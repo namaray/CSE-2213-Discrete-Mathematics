@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1. Logic and Proofs | CSE-2213 Study Guide</title>
+    <style>
+        /* CSS Styling - Consistent with Index */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --background-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --table-border: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #ecf0f1;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid #ecf0f1;
+            padding: 5px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #ecf0f1;
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--background-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin-top: 25px;
+        }
+
+        .callout {
+            background-color: #e8f4f8;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .warning {
+            background-color: #fcf3f3;
+            border-left: 5px solid #e74c3c;
+        }
+
+        .formula {
+            font-family: 'Courier New', Courier, monospace;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        /* Truth Table Styling */
+        table {
+            width: 100%;
+            max-width: 400px;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+            text-align: center;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid var(--table-border);
+        }
+
+        th {
+            background-color: var(--secondary-color);
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2-col { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Module 1: Propositional Logic</h1>
+        <a href="index.html" class="back-link">← Back to Syllabus</a>
+    </header>
+
+    <div class="container">
+
+        <!-- Section 1: Introduction to Propositions -->
+        <div class="section-card">
+            <h2>1. What is a Proposition?</h2>
+            <div class="callout">
+                <strong>Definition:</strong> A proposition is a <em>declarative sentence</em> that can be either <strong>true</strong> or <strong>false</strong>, but cannot be both, and cannot be neither.
+            </div>
+            
+            <div class="grid-2-col">
+                <div>
+                    <h3>✅ Examples of Propositions</h3>
+                    <ul>
+                        <li>"The sun rises in the east" <em>(True proposition)</em></li>
+                        <li>"2 plus 2 equals 5" <em>(False proposition)</em></li>
+                        <li>x + 1 = y, given that x = 5 and y = 6 <em>(Equation with values)</em></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>❌ NOT Propositions</h3>
+                    <ul>
+                        <li>"What is your name?" <em>(Question)</em></li>
+                        <li>"Tell me your name." <em>(Order/Command)</em></li>
+                        <li>x + 1 = y <em>(Equation without assigned values; neither true nor false)</em></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="callout warning">
+                <strong>The Liar Paradox:</strong> "I am lying." <br>
+                If it is true, you are lying (making it false). If it is false, you are telling the truth (making it true). Because it is both true and false simultaneously, it is <strong>not a proposition</strong>.
+            </div>
+        </div>
+
+        <!-- Section 2: Variables & Types -->
+        <div class="section-card">
+            <h2>2. Variables & Proposition Types</h2>
+            <p>We use variables (like <span class="formula">p, q, a, b</span>) to represent propositions to avoid writing out full sentences.</p>
+            <ul>
+                <li><span class="formula">p</span> = "The earth is round"</li>
+                <li><span class="formula">q</span> = "Argentina won the world cup"</li>
+            </ul>
+
+            <h3>Atomic vs. Compound Propositions</h3>
+            <ul>
+                <li><strong>Atomic Propositions:</strong> Cannot be broken down further. <em>(e.g., "I live in Dhaka")</em></li>
+                <li><strong>Compound Propositions:</strong> Formed by combining two or more atomic propositions using logical operators. <em>(e.g., "I live in Dhaka <strong>and</strong> I am a lecturer")</em></li>
+            </ul>
+        </div>
+
+        <!-- Section 3: Logical Operators -->
+        <div class="section-card">
+            <h2>3. Logical Operators (Connectives)</h2>
+            <p>Logical operators modify or combine simple propositions. Let's look at the basic truth tables for these operators.</p>
+
+            <div class="grid-2-col">
+                <!-- Negation -->
+                <div>
+                    <h3>Negation (NOT)</h3>
+                    <p>Denoted by <span class="formula">¬p</span>. Means "It is not the case that p". True if the actual proposition is false.</p>
+                    <table>
+                        <tr><th>p</th><th>¬p</th></tr>
+                        <tr><td>T</td><td>F</td></tr>
+                        <tr><td>F</td><td>T</td></tr>
+                    </table>
+                </div>
+
+                <!-- Conjunction -->
+                <div>
+                    <h3>Conjunction (AND)</h3>
+                    <p>Denoted by <span class="formula">p ∧ q</span>. True <strong>only</strong> if both propositions are individually true.</p>
+                    <table>
+                        <tr><th>p</th><th>q</th><th>p ∧ q</th></tr>
+                        <tr><td>T</td><td>T</td><td>T</td></tr>
+                        <tr><td>T</td><td>F</td><td>F</td></tr>
+                        <tr><td>F</td><td>T</td><td>F</td></tr>
+                        <tr><td>F</td><td>F</td><td>F</td></tr>
+                    </table>
+                </div>
+
+                <!-- Disjunction -->
+                <div>
+                    <h3>Disjunction (OR)</h3>
+                    <p>Denoted by <span class="formula">p ∨ q</span>. True if <strong>any</strong> of the propositions is true.</p>
+                    <table>
+                        <tr><th>p</th><th>q</th><th>p ∨ q</th></tr>
+                        <tr><td>T</td><td>T</td><td>T</td></tr>
+                        <tr><td>T</td><td>F</td><td>T</td></tr>
+                        <tr><td>F</td><td>T</td><td>T</td></tr>
+                        <tr><td>F</td><td>F</td><td>F</td></tr>
+                    </table>
+                </div>
+
+                <!-- XOR -->
+                <div>
+                    <h3>Exclusive OR (XOR)</h3>
+                    <p>Denoted by <span class="formula">p ⊕ q</span>. True if <strong>exactly one</strong> proposition is true.</p>
+                    <table>
+                        <tr><th>p</th><th>q</th><th>p ⊕ q</th></tr>
+                        <tr><td>T</td><td>T</td><td>F</td></tr>
+                        <tr><td>T</td><td>F</td><td>T</td></tr>
+                        <tr><td>F</td><td>T</td><td>T</td></tr>
+                        <tr><td>F</td><td>F</td><td>F</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Conditionals -->
+        <div class="section-card">
+            <h2>4. Conditional Statements (Implies)</h2>
+            <p>Denoted by <span class="formula">p → q</span>. Means "If p, then q".</p>
+            <ul>
+                <li><strong>p:</strong> Premise / Hypothesis</li>
+                <li><strong>q:</strong> Conclusion / Consequence</li>
+            </ul>
+            
+            <p><em>Example: "If it rains (p), I will stay home (q)."</em></p>
+            <p>When is this false? The <strong>only time</strong> a conditional statement is false is if the hypothesis happens, but the conclusion does not (i.e., It rains, but you go out anyway).</p>
+
+            <table>
+                <tr><th>p (Hypothesis)</th><th>q (Conclusion)</th><th>p → q</th></tr>
+                <tr><td>T</td><td>T</td><td>T</td></tr>
+                <tr><td>T</td><td>F</td><td><strong>F</strong></td></tr>
+                <tr><td>F</td><td>T</td><td>T</td></tr>
+                <tr><td>F</td><td>F</td><td>T</td></tr>
+            </table>
+
+            <h3>Sufficient & Necessary Conditions</h3>
+            <div class="callout">
+                <p>For <span class="formula">p → q</span>:</p>
+                <ul>
+                    <li><strong>p</strong> is a <strong>sufficient</strong> condition for q. <em>(Raining is sufficient reason for me to stay home).</em></li>
+                    <li><strong>q</strong> is a <strong>necessary</strong> condition for p. <em>(In order to pass, it is necessary that you study).</em></li>
+                </ul>
+            </div>
+
+            <h3>14 Ways to Express p → q</h3>
+            <ol style="column-count: 2;">
+                <li>if p, then q</li>
+                <li>if p, q</li>
+                <li>p implies q</li>
+                <li>q if p</li>
+                <li>q when p</li>
+                <li>q whenever p</li>
+                <li>q follows from p</li>
+                <li>q provided that p</li>
+                <li>q unless ¬p</li>
+                <li>p only if q</li>
+                <li>p is sufficient for q</li>
+                <li>a sufficient condition for q is p</li>
+                <li>q is necessary for p</li>
+                <li>a necessary condition for p is q</li>
+            </ol>
+        </div>
+
+        <!-- Section 5: Biconditional -->
+        <div class="section-card">
+            <h2>5. Biconditional Statements (If and Only If)</h2>
+            <p>Denoted by <span class="formula">p ↔ q</span>. Means "p if and only if q".</p>
+            <p>Here, <strong>p and q are necessary and sufficient conditions for each other.</strong> The statement is true when both have the exact same truth value.</p>
+            
+            <table>
+                <tr><th>p</th><th>q</th><th>p ↔ q</th></tr>
+                <tr><td>T</td><td>T</td><td>T</td></tr>
+                <tr><td>T</td><td>F</td><td>F</td></tr>
+                <tr><td>F</td><td>T</td><td>F</td></tr>
+                <tr><td>F</td><td>F</td><td>T</td></tr>
+            </table>
+
+            <h3>Different ways to express p ↔ q:</h3>
+            <ul>
+                <li>p if and only if q</li>
+                <li>p iff q</li>
+                <li>p is necessary and sufficient for q</li>
+                <li>if p then q, and if q then p</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 CSE-2213 Study Guide | Built for GitHub Pages</p>
+    </footer>
+
+</body>
+</html>
