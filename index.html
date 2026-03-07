@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSE-2213: Discrete Mathematics | Study Guide</title>
+    <style>
+        /* CSS Styling */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --background-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* Grid Layout for Syllabus Topics */
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* Individual Topic Cards */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: var(--text-color);
+            border-left: 5px solid var(--secondary-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            margin: 0 0 10px 0;
+            color: var(--primary-color);
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #666;
+            flex-grow: 1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .container { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>CSE-2213: Discrete Mathematics</h1>
+        <p>Comprehensive Study Guide & Notes</p>
+    </header>
+
+    <div class="container">
+        <div class="intro">
+            <h2>Course Syllabus Overview</h2>
+            <p>Select a module below to access lecture notes, formulas, theorems, and practice problems.</p>
+        </div>
+
+        <div class="module-grid">
+            <!-- Module 1 -->
+            <a href="logic-and-proofs.html" class="card">
+                <div class="card-icon">🧠</div>
+                <h3>1. Logic and Proofs</h3>
+                <p>Propositional logic, predicates, quantifiers, rules of inference, and various proof techniques.</p>
+            </a>
+
+            <!-- Module 2 -->
+            <a href="sets-functions-relations.html" class="card">
+                <div class="card-icon">🖇️</div>
+                <h3>2. Sets, Functions & Relations</h3>
+                <p>Set theory operations, types of functions, equivalence relations, and partial orderings.</p>
+            </a>
+
+            <!-- Module 3 -->
+            <a href="algorithms-integers.html" class="card">
+                <div class="card-icon">💻</div>
+                <h3>3. Algorithms & Integers</h3>
+                <p>Algorithmic complexity (Big-O), number theory basics, modular arithmetic, and cryptography.</p>
+            </a>
+
+            <!-- Module 4 -->
+            <a href="induction-recursion.html" class="card">
+                <div class="card-icon">🔁</div>
+                <h3>4. Induction and Recursion</h3>
+                <p>Mathematical induction, strong induction, structural induction, and recursive definitions.</p>
+            </a>
+
+            <!-- Module 5 -->
+            <a href="combinatorics.html" class="card">
+                <div class="card-icon">🎲</div>
+                <h3>5. Counting & Combinatorics</h3>
+                <p>Pigeonhole principle, permutations, combinations, and binomial coefficients.</p>
+            </a>
+
+            <!-- Module 6 -->
+            <a href="discrete-probability.html" class="card">
+                <div class="card-icon">📊</div>
+                <h3>6. Discrete Probability</h3>
+                <p>Probability theory basics, Bayes' theorem, and expected value.</p>
+            </a>
+
+            <!-- Module 7 -->
+            <a href="graph-theory.html" class="card">
+                <div class="card-icon">🕸️</div>
+                <h3>7. Graph Theory</h3>
+                <p>Undirected/directed graphs, connectivity, Euler/Hamilton paths, and shortest-path algorithms.</p>
+            </a>
+
+            <!-- Module 8 -->
+            <a href="trees.html" class="card">
+                <div class="card-icon">🌳</div>
+                <h3>8. Trees</h3>
+                <p>Tree terminology, spanning trees, binary search trees, and tree traversal.</p>
+            </a>
+
+            <!-- Module 9 -->
+            <a href="boolean-algebra.html" class="card">
+                <div class="card-icon">⚡</div>
+                <h3>9. Boolean Algebra</h3>
+                <p>Boolean functions, logic gates, and minimization of circuits (K-Maps).</p>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 CSE-2213 Study Guide. Built for GitHub Pages.</p>
+    </footer>
+
+</body>
+</html>
