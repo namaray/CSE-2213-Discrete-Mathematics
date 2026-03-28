@@ -102,6 +102,9 @@
         }
 
         /* Truth Table Styling */
+        .table-container {
+            overflow-x: auto; /* Ensures wide tables don't break mobile view */
+        }
         table {
             width: 100%;
             max-width: 400px;
@@ -329,6 +332,120 @@
                 <li>p is necessary and sufficient for q</li>
                 <li>if p then q, and if q then p</li>
             </ul>
+        </div>
+
+        <!-- ==========================================
+             NEW CONTENT ADDED BELOW (FROM PDF 2)
+        =========================================== -->
+
+        <!-- Section 6: Converse, Contrapositive, and Inverse -->
+        <div class="section-card">
+            <h2>6. Converse, Contrapositive, and Inverse</h2>
+            <p>From the conditional statement <span class="formula">p → q</span> ("If I am in Dhaka then I am in Bangladesh"), we can form three new related conditional statements:</p>
+            
+            <ul>
+                <li><strong>Converse:</strong> <span class="formula">q → p</span> 
+                    <br><em>If I am in Bangladesh, then I am in Dhaka.</em></li>
+                
+                <li><strong>Inverse:</strong> <span class="formula">¬p → ¬q</span> 
+                    <br><em>If I am not in Dhaka then I am not in Bangladesh.</em></li>
+                
+                <li><strong>Contrapositive:</strong> <span class="formula">¬q → ¬p</span> 
+                    <br><em>If I am not in Bangladesh, then I am not in Dhaka.</em></li>
+            </ul>
+
+            <div class="callout">
+                <strong>Logical Equivalence:</strong> 
+                A conditional statement and its <strong>contrapositive</strong> are logically equivalent. <br>
+                <span class="formula">p → q ≡ ¬q → ¬p</span>
+            </div>
+        </div>
+
+        <!-- Section 7: Operator Precedence -->
+        <div class="section-card">
+            <h2>7. Precedence of Logical Operators</h2>
+            <p>There may be several logical operators in a sentence. We keep the precedence in mind while translating as a strategy:</p>
+            <div class="table-container">
+                <table style="max-width: 300px;">
+                    <tr><th>Operator</th><th>Precedence</th></tr>
+                    <tr><td><span class="formula">¬</span> (NOT)</td><td>1 (Highest)</td></tr>
+                    <tr><td><span class="formula">∧</span> (AND)</td><td>2</td></tr>
+                    <tr><td><span class="formula">∨</span> (OR)</td><td>3</td></tr>
+                    <tr><td><span class="formula">→</span> (Implies)</td><td>4</td></tr>
+                    <tr><td><span class="formula">↔</span> (Biconditional)</td><td>5 (Lowest)</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Section 8: Translating English to Propositions -->
+        <div class="section-card">
+            <h2>8. Translating Sentences into Propositions</h2>
+            
+            <div class="callout">
+                <strong>Example 1:</strong> "You can graduate only if you have completed the requirements of your major and you do not owe money to the university and you do not have an overdue library book."
+                <br><br>
+                <strong>Let:</strong><br>
+                g : "You can graduate"<br>
+                r : "You have completed the requirements of your major"<br>
+                m : "You owe money to the university"<br>
+                o : "You have an overdue library book"<br><br>
+                <strong>Translation:</strong> <span class="formula">g → (r ∧ ¬m ∧ ¬o)</span>
+            </div>
+
+            <div class="callout">
+                <strong>Example 2:</strong> "To use the wireless network in the airport you must pay the daily fee unless you are a subscriber to the service."
+                <br><br>
+                <strong>Let:</strong><br>
+                w : "You use the wireless network in the airport"<br>
+                p : "You must pay the daily fee"<br>
+                s : "You are a subscriber to the service"<br><br>
+                <strong>Translation:</strong> <span class="formula">¬s → (w → p)</span>
+            </div>
+        </div>
+
+        <!-- Section 9: Truth Tables for Compound Propositions -->
+        <div class="section-card">
+            <h2>9. Truth Table of Compound Propositions</h2>
+            <p>A truth table is used to observe the behavior of a compound proposition at a glance. To solve complex ones, we should divide them into small sections.</p>
+            
+            <h3>Example: Construct truth table for <span class="formula">(p ∨ q) ∧ ¬r</span></h3>
+            <div class="table-container">
+                <table style="max-width: 600px;">
+                    <tr>
+                        <th>p</th><th>q</th><th>r</th>
+                        <th>(p ∨ q)</th>
+                        <th>¬r</th>
+                        <th>(p ∨ q) ∧ ¬r</th>
+                    </tr>
+                    <tr><td>T</td><td>T</td><td>T</td><td>T</td><td>F</td><td>F</td></tr>
+                    <tr><td>T</td><td>T</td><td>F</td><td>T</td><td>T</td><td>T</td></tr>
+                    <tr><td>T</td><td>F</td><td>T</td><td>T</td><td>F</td><td>F</td></tr>
+                    <tr><td>T</td><td>F</td><td>F</td><td>T</td><td>T</td><td>T</td></tr>
+                    <tr><td>F</td><td>T</td><td>T</td><td>T</td><td>F</td><td>F</td></tr>
+                    <tr><td>F</td><td>T</td><td>F</td><td>T</td><td>T</td><td>T</td></tr>
+                    <tr><td>F</td><td>F</td><td>T</td><td>F</td><td>F</td><td>F</td></tr>
+                    <tr><td>F</td><td>F</td><td>F</td><td>F</td><td>T</td><td>F</td></tr>
+                </table>
+            </div>
+
+            <h3>Example: Construct truth table for <span class="formula">p ∧ (q ↔ r)</span></h3>
+            <div class="table-container">
+                <table style="max-width: 500px;">
+                    <tr>
+                        <th>p</th><th>q</th><th>r</th>
+                        <th>(q ↔ r)</th>
+                        <th>p ∧ (q ↔ r)</th>
+                    </tr>
+                    <tr><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+                    <tr><td>T</td><td>T</td><td>F</td><td>F</td><td>F</td></tr>
+                    <tr><td>T</td><td>F</td><td>T</td><td>F</td><td>F</td></tr>
+                    <tr><td>T</td><td>F</td><td>F</td><td>T</td><td>T</td></tr>
+                    <tr><td>F</td><td>T</td><td>T</td><td>T</td><td>F</td></tr>
+                    <tr><td>F</td><td>T</td><td>F</td><td>F</td><td>F</td></tr>
+                    <tr><td>F</td><td>F</td><td>T</td><td>F</td><td>F</td></tr>
+                    <tr><td>F</td><td>F</td><td>F</td><td>T</td><td>F</td></tr>
+                </table>
+            </div>
         </div>
 
     </div>
