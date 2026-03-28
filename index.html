@@ -8,10 +8,12 @@
         /* CSS Styling */
         :root {
             --primary-color: #2c3e50;
-            --secondary-color: #3498db;
+            --secondary-color: #e67e22; /* Changed to UIU-style orange/brand color */
             --background-color: #f4f7f6;
             --text-color: #333;
             --card-bg: #ffffff;
+            --mid-color: #2980b9;
+            --final-color: #8e44ad;
         }
 
         body {
@@ -48,9 +50,42 @@
             padding: 2rem;
         }
 
-        .intro {
-            text-align: center;
-            margin-bottom: 3rem;
+        /* Term Section Styling */
+        .term-section {
+            margin-bottom: 4rem;
+        }
+
+        .term-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ddd;
+        }
+
+        .term-header h2 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .midterm-header h2 {
+            color: var(--mid-color);
+            border-bottom-color: var(--mid-color);
+        }
+
+        .final-header h2 {
+            color: var(--final-color);
+            border-bottom-color: var(--final-color);
+        }
+
+        .term-badge {
+            background: #eee;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-left: 15px;
+            color: #555;
         }
 
         /* Grid Layout for Syllabus Topics */
@@ -69,10 +104,12 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none;
             color: var(--text-color);
-            border-left: 5px solid var(--secondary-color);
             display: flex;
             flex-direction: column;
         }
+
+        .mid-card { border-left: 5px solid var(--mid-color); }
+        .final-card { border-left: 5px solid var(--final-color); }
 
         .card:hover {
             transform: translateY(-5px);
@@ -87,6 +124,7 @@
         .card h3 {
             margin: 0 0 10px 0;
             color: var(--primary-color);
+            font-size: 1.2rem;
         }
 
         .card p {
@@ -96,10 +134,21 @@
             flex-grow: 1;
         }
 
+        .classes-tag {
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #888;
+            background: #f1f1f1;
+            padding: 3px 8px;
+            border-radius: 4px;
+            align-self: flex-start;
+        }
+
         footer {
             text-align: center;
             padding: 2rem;
-            margin-top: 3rem;
             background-color: var(--primary-color);
             color: white;
         }
@@ -108,6 +157,8 @@
         @media (max-width: 768px) {
             header h1 { font-size: 2rem; }
             .container { padding: 1rem; }
+            .term-header { flex-direction: column; align-items: flex-start; }
+            .term-badge { margin-left: 0; margin-top: 10px; }
         }
     </style>
 </head>
@@ -119,79 +170,116 @@
     </header>
 
     <div class="container">
-        <div class="intro">
-            <h2>Course Syllabus Overview</h2>
-            <p>Select a module below to access lecture notes, formulas, theorems, and practice problems.</p>
+
+        <!-- ==========================================
+             MIDTERM SYLLABUS SECTION
+        =========================================== -->
+        <div class="term-section">
+            <div class="term-header midterm-header">
+                <h2>Midterm Syllabus</h2>
+                <span class="term-badge">Weight: 30%</span>
+            </div>
+
+            <div class="module-grid">
+                <!-- Module 1 -->
+                <a href="logic-and-proofs.html" class="card mid-card">
+                    <div class="card-icon">🧠</div>
+                    <h3>Propositional Logic</h3>
+                    <p>Intro to logic, propositions, logical operators, conditional statements, and biconditionals.</p>
+                    <span class="classes-tag">Classes 1 - 3</span>
+                </a>
+
+                <!-- Module 2 -->
+                <a href="predicates-quantifiers.html" class="card mid-card">
+                    <div class="card-icon">🔍</div>
+                    <h3>Predicates & Quantifiers</h3>
+                    <p>Predicate logic, universal/existential quantifiers, and nested quantifiers.</p>
+                    <span class="classes-tag">Classes 4 - 5</span>
+                </a>
+
+                <!-- Module 3 -->
+                <a href="proof-techniques.html" class="card mid-card">
+                    <div class="card-icon">📝</div>
+                    <h3>Basic Proof Techniques</h3>
+                    <p>Direct proofs, proof by contraposition, proof by contradiction, and equivalent propositions.</p>
+                    <span class="classes-tag">Classes 6 - 7</span>
+                </a>
+
+                <!-- Module 4 -->
+                <a href="sets-operations.html" class="card mid-card">
+                    <div class="card-icon">🖇️</div>
+                    <h3>Sets & Set Operations</h3>
+                    <p>Introduction to sets, subsets, power sets, unions, intersections, differences, and complements.</p>
+                    <span class="classes-tag">Classes 8 - 9</span>
+                </a>
+
+                <!-- Module 5 -->
+                <a href="functions.html" class="card mid-card">
+                    <div class="card-icon">📈</div>
+                    <h3>Functions</h3>
+                    <p>Domain, codomain, range, one-to-one (injective), onto (surjective), and inverse functions.</p>
+                    <span class="classes-tag">Class 10</span>
+                </a>
+
+                <!-- Module 6 -->
+                <a href="mathematical-induction.html" class="card mid-card">
+                    <div class="card-icon">🔁</div>
+                    <h3>Mathematical Induction</h3>
+                    <p>Basis step, inductive step, and proving mathematical statements using induction.</p>
+                    <span class="classes-tag">Class 11</span>
+                </a>
+            </div>
         </div>
 
-        <div class="module-grid">
-            <!-- Module 1 -->
-            <a href="logic-and-proofs.html" class="card">
-                <div class="card-icon">🧠</div>
-                <h3>1. Logic and Proofs</h3>
-                <p>Propositional logic, predicates, quantifiers, rules of inference, and various proof techniques.</p>
-            </a>
 
-            <!-- Module 2 -->
-            <a href="sets-functions-relations.html" class="card">
-                <div class="card-icon">🖇️</div>
-                <h3>2. Sets, Functions & Relations</h3>
-                <p>Set theory operations, types of functions, equivalence relations, and partial orderings.</p>
-            </a>
+        <!-- ==========================================
+             FINAL EXAM SYLLABUS SECTION
+        =========================================== -->
+        <div class="term-section">
+            <div class="term-header final-header">
+                <h2>Final Exam Syllabus</h2>
+                <span class="term-badge">Weight: 40%</span>
+            </div>
 
-            <!-- Module 3 -->
-            <a href="algorithms-integers.html" class="card">
-                <div class="card-icon">💻</div>
-                <h3>3. Algorithms & Integers</h3>
-                <p>Algorithmic complexity (Big-O), number theory basics, modular arithmetic, and cryptography.</p>
-            </a>
+            <div class="module-grid">
+                <!-- Module 7 -->
+                <a href="counting-combinatorics.html" class="card final-card">
+                    <div class="card-icon">🎲</div>
+                    <h3>Counting & Combinatorics</h3>
+                    <p>Basics of counting, The Pigeonhole Principle, Permutations, and Combinations.</p>
+                    <span class="classes-tag">Classes 13 - 15</span>
+                </a>
 
-            <!-- Module 4 -->
-            <a href="induction-recursion.html" class="card">
-                <div class="card-icon">🔁</div>
-                <h3>4. Induction and Recursion</h3>
-                <p>Mathematical induction, strong induction, structural induction, and recursive definitions.</p>
-            </a>
+                <!-- Module 8 -->
+                <a href="recurrence-relations.html" class="card final-card">
+                    <div class="card-icon">🔄</div>
+                    <h3>Recurrence Relations</h3>
+                    <p>Modeling with recurrence relations and solving linear recurrence relations.</p>
+                    <span class="classes-tag">Class 16</span>
+                </a>
 
-            <!-- Module 5 -->
-            <a href="combinatorics.html" class="card">
-                <div class="card-icon">🎲</div>
-                <h3>5. Counting & Combinatorics</h3>
-                <p>Pigeonhole principle, permutations, combinations, and binomial coefficients.</p>
-            </a>
+                <!-- Module 9 -->
+                <a href="graph-theory.html" class="card final-card">
+                    <div class="card-icon">🕸️</div>
+                    <h3>Graph Theory</h3>
+                    <p>Graph models, types of graphs, graph representation, isomorphism, paths, and connectivity.</p>
+                    <span class="classes-tag">Classes 17 - 20</span>
+                </a>
 
-            <!-- Module 6 -->
-            <a href="discrete-probability.html" class="card">
-                <div class="card-icon">📊</div>
-                <h3>6. Discrete Probability</h3>
-                <p>Probability theory basics, Bayes' theorem, and expected value.</p>
-            </a>
-
-            <!-- Module 7 -->
-            <a href="graph-theory.html" class="card">
-                <div class="card-icon">🕸️</div>
-                <h3>7. Graph Theory</h3>
-                <p>Undirected/directed graphs, connectivity, Euler/Hamilton paths, and shortest-path algorithms.</p>
-            </a>
-
-            <!-- Module 8 -->
-            <a href="trees.html" class="card">
-                <div class="card-icon">🌳</div>
-                <h3>8. Trees</h3>
-                <p>Tree terminology, spanning trees, binary search trees, and tree traversal.</p>
-            </a>
-
-            <!-- Module 9 -->
-            <a href="boolean-algebra.html" class="card">
-                <div class="card-icon">⚡</div>
-                <h3>9. Boolean Algebra</h3>
-                <p>Boolean functions, logic gates, and minimization of circuits (K-Maps).</p>
-            </a>
+                <!-- Module 10 -->
+                <a href="trees.html" class="card final-card">
+                    <div class="card-icon">🌳</div>
+                    <h3>Trees & Applications</h3>
+                    <p>Tree properties, Binary Search Trees (BST), tree traversal algorithms, and applications.</p>
+                    <span class="classes-tag">Classes 21 - 23</span>
+                </a>
+            </div>
         </div>
+
     </div>
 
     <footer>
-        <p>&copy; 2024 CSE-2213 Study Guide. Built for GitHub Pages.</p>
+        <p>&copy; 2024 CSE-2213 Discrete Mathematics Study Guide | Built for GitHub Pages</p>
     </footer>
 
 </body>
