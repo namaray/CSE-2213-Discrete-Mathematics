@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logical Equivalence | CSE-2213 Study Guide</title>
+    <style>
+        /* CSS Styling - Consistent with Index */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e67e22; /* UIU Orange */
+            --background-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --table-border: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #ecf0f1;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid #ecf0f1;
+            padding: 5px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #ecf0f1;
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--background-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin-top: 25px;
+        }
+
+        .callout {
+            background-color: #fdf6e3;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .formula {
+            font-family: 'Courier New', Courier, monospace;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #d35400;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid var(--table-border);
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .proof-step {
+            margin-bottom: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.1rem;
+            background: #f4f7f6;
+            padding: 10px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .proof-rule {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background-color: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Logical Equivalence</h1>
+        <p>Midterm Syllabus • Classes 2 - 3</p>
+        <a href="index.html" class="back-link">← Back to Syllabus</a>
+    </header>
+
+    <div class="container">
+
+        <!-- Section 1: Introduction -->
+        <div class="section-card">
+            <h2>1. What is Logical Equivalence?</h2>
+            <p>Two logical statements P and Q are said to be logically equivalent if, and only if, they have <strong>identical truth values</strong> in every possible interpretation.</p>
+            
+            <div class="callout">
+                <p>In symbolic terms, we write this as: <span class="formula">P &equiv; Q</span></p>
+                <p>This means that the biconditional <span class="formula">P &harr; Q</span> is always true, regardless of the truth values of the individual components.</p>
+            </div>
+
+            <h3>Tautology vs. Contradiction</h3>
+            <ul>
+                <li><strong>Tautology:</strong> A compound proposition that is ALWAYS true. <br><em>Example:</em> <span class="formula">P &or; &not;P</span> (The light is either on, or it is not on).</li>
+                <li><strong>Contradiction:</strong> A compound proposition that is ALWAYS false. <br><em>Example:</em> <span class="formula">P &and; &not;P</span> (The light is on and not on at the same time).</li>
+            </ul>
+        </div>
+
+        <!-- Section 2: Proving via Truth Tables -->
+        <div class="section-card">
+            <h2>2. Proving Equivalence using Truth Tables</h2>
+            <p>You can prove <span class="formula">P &equiv; Q</span> by showing that the column for P exactly matches the column for Q in a truth table.</p>
+
+            <h3>Example: Prove <span class="formula">p &rarr; q &equiv; &not;p &or; q</span></h3>
+            <div class="table-container">
+                <table style="max-width: 600px; margin: 0 auto; text-align: center;">
+                    <tr>
+                        <th>p</th>
+                        <th>q</th>
+                        <th>&not;p</th>
+                        <th style="background-color: var(--secondary-color);">p &rarr; q</th>
+                        <th style="background-color: var(--secondary-color);">&not;p &or; q</th>
+                    </tr>
+                    <tr><td>T</td><td>T</td><td>F</td><td><strong>T</strong></td><td><strong>T</strong></td></tr>
+                    <tr><td>T</td><td>F</td><td>F</td><td><strong>F</strong></td><td><strong>F</strong></td></tr>
+                    <tr><td>F</td><td>T</td><td>T</td><td><strong>T</strong></td><td><strong>T</strong></td></tr>
+                    <tr><td>F</td><td>F</td><td>T</td><td><strong>T</strong></td><td><strong>T</strong></td></tr>
+                </table>
+            </div>
+            <p style="text-align: center;"><em>Because the last two columns match perfectly, the equivalence is proven!</em></p>
+        </div>
+
+        <!-- Section 3: Logical Equivalence Laws -->
+        <div class="section-card">
+            <h2>3. Logical Equivalence Laws (The "Cheat Sheet")</h2>
+            <p>Instead of drawing giant truth tables, we can use these algebraic laws to simplify expressions.</p>
+
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Law Name</th>
+                        <th>Representation (AND / OR)</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Identity</strong></td>
+                        <td>p &and; T &equiv; p <br> p &or; F &equiv; p</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Domination</strong></td>
+                        <td>p &or; T &equiv; T <br> p &and; F &equiv; F</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Idempotent</strong></td>
+                        <td>p &and; p &equiv; p <br> p &or; p &equiv; p</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Negation</strong></td>
+                        <td>p &and; &not;p &equiv; F <br> p &or; &not;p &equiv; T</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Double Negation</strong></td>
+                        <td>&not;(&not;p) &equiv; p</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Commutative</strong></td>
+                        <td>p &and; q &equiv; q &and; p <br> p &or; q &equiv; q &or; p</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Associative</strong></td>
+                        <td>(p &and; q) &and; r &equiv; p &and; (q &and; r) <br> (p &or; q) &or; r &equiv; p &or; (q &or; r)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Distributive</strong></td>
+                        <td>p &and; (q &or; r) &equiv; (p &and; q) &or; (p &and; r) <br> p &or; (q &and; r) &equiv; (p &or; q) &and; (p &or; r)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>De Morgan’s Laws</strong></td>
+                        <td>&not;(p &and; q) &equiv; &not;p &or; &not;q <br> &not;(p &or; q) &equiv; &not;p &and; &not;q</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Absorption</strong></td>
+                        <td>p &and; (p &or; q) &equiv; p <br> p &or; (p &and; q) &equiv; p</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Special Laws (Implications & Biconditionals)</h3>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <td><strong>Conditional Law</strong></td>
+                        <td>p &rarr; q &equiv; &not;p &or; q</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contrapositive Law</strong></td>
+                        <td>p &rarr; q &equiv; &not;q &rarr; &not;p</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Biconditional Law</strong></td>
+                        <td>p &harr; q &equiv; (p &rarr; q) &and; (q &rarr; p)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Section 4: Step-by-step Proofs -->
+        <div class="section-card">
+            <h2>4. Step-by-Step Propositional Equivalences</h2>
+            <p>Using the laws above, we can prove complex equivalences without truth tables.</p>
+
+            <h3>Example 1: Prove that <span class="formula">&not;(p &rarr; q) &equiv; p &and; &not;q</span></h3>
+            <div class="proof-step">
+                <span>&not;(p &rarr; q)</span> <span class="proof-rule"></span>
+            </div>
+            <div class="proof-step">
+                <span>&equiv; &not;(&not;p &or; q)</span> <span class="proof-rule">[Conditional Law]</span>
+            </div>
+            <div class="proof-step">
+                <span>&equiv; &not;(&not;p) &and; &not;q</span> <span class="proof-rule">[De Morgan's Law]</span>
+            </div>
+            <div class="proof-step">
+                <span>&equiv; p &and; &not;q</span> <span class="proof-rule">[Double Negation]</span>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #ddd; margin: 30px 0;">
+
+            <h3>Example 2: Prove that <span class="formula">(p &and; q) &rarr; (p &or; q)</span> is a Tautology</h3>
+            <div class="proof-step">
+                <span>(p &and; q) &rarr; (p &or; q)</span> <span class="proof-rule"></span>
+            </div>
+            <div class="proof-step">
+                <span>&equiv; &not;(p &and; q) &or; (p &or; q)</span> <span class="proof-rule">[Conditional Law]</span>
+            </div>
+            <div class="proof-step">
+                <span>&equiv; (&not;p &or; &not;q) &or; (p &or; q)</span> <span class="proof-rule">[De Morgan's Law]</span>
+            </div>
+            <div class="proof-step">
+                <span>&equiv; (&not;p &or; p) &or; (&not;q &or; q)</span> <span class="proof-rule">[Commutative & Associative Laws]</span>
+            </div>
+            <div class="proof-step">
+                <span>&equiv; T &or; T</span> <span class="proof-rule">[Negation Law]</span>
+            </div>
+            <div class="proof-step">
+                <span>&equiv; T</span> <span class="proof-rule">[Domination Law]</span>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #ddd; margin: 30px 0;">
+
+            <h3>Example 3: Prove that <span class="formula">(p &rarr; q) &and; (p &rarr; r) &equiv; p &rarr; (q &and; r)</span></h3>
+            <div class="proof-step">
+                <span>(p &rarr; q) &and; (p &rarr; r)</span> <span class="proof-rule"></span>
+            </div>
+            <div class="proof-step">
+                <span>&equiv; (&not;p &or; q) &and; (&not;p &or; r)</span> <span class="proof-rule">[Conditional Law]</span>
+            </div>
+            <div class="proof-step">
+                <span>&equiv; &not;p &or; (q &and; r)</span> <span class="proof-rule">[Distributive Law (in reverse)]</span>
+            </div>
+            <div class="proof-step">
+                <span>&equiv; p &rarr; (q &and; r)</span> <span class="proof-rule">[Conditional Law]</span>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 CSE-2213 Study Guide | Built for GitHub Pages</p>
+    </footer>
+
+</body>
+</html>
