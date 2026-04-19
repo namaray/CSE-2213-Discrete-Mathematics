@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sets & Set Operations | CSE-2213 Study Guide</title>
+    <style>
+        /* CSS Styling - Consistent with Index */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e67e22; /* UIU Orange */
+            --background-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --table-border: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #ecf0f1;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid #ecf0f1;
+            padding: 5px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #ecf0f1;
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--background-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin-top: 25px;
+        }
+
+        .callout {
+            background-color: #fdf6e3;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .warning {
+            background-color: #fcf3f3;
+            border-left: 5px solid #e74c3c;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .formula {
+            font-family: 'Courier New', Courier, monospace;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #d35400;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid var(--table-border);
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2-col { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Sets & Set Operations</h1>
+        <p>Midterm Syllabus • Classes 8 - 9</p>
+        <a href="index.html" class="back-link">← Back to Syllabus</a>
+    </header>
+
+    <div class="container">
+
+        <!-- Section 1: Intro to Sets -->
+        <div class="section-card">
+            <h2>1. Introduction to Sets</h2>
+            <p>A set is a collection of <strong>unordered</strong> objects. Objects in a set are called members or elements.</p>
+            <ul>
+                <li><span class="formula">a &isin; V</span> means "a is a member of V".</li>
+                <li><span class="formula">x &notin; V</span> means "x is not a member of V".</li>
+            </ul>
+
+            <h3>Important Mathematical Sets</h3>
+            <table>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Name</th>
+                    <th>Elements</th>
+                </tr>
+                <tr><td><strong>&#8469;</strong></td><td>Natural Numbers</td><td>{0, 1, 2, 3, ...}</td></tr>
+                <tr><td><strong>&#8484;</strong></td><td>Integers</td><td>{..., -2, -1, 0, 1, 2, ...}</td></tr>
+                <tr><td><strong>&#8484;<sup>+</sup></strong></td><td>Positive Integers</td><td>{1, 2, 3, ...}</td></tr>
+                <tr><td><strong>&#8474;</strong></td><td>Rational Numbers</td><td>{p/q | p&isin;&#8484;, q&isin;&#8484;, q&ne;0}</td></tr>
+                <tr><td><strong>&#8477;</strong></td><td>Real Numbers</td><td>All numbers on the number line</td></tr>
+            </table>
+
+            <h3>Ways to represent a set</h3>
+            <ul>
+                <li><strong>Roster Method:</strong> Listing all elements explicitly. <br>Example: <span class="formula">S = {1, 2, 3, 4, 5}</span></li>
+                <li><strong>Set Builder Notation:</strong> Stating the properties that elements must satisfy. <br>Example: <span class="formula">S = {x &isin; &#8484;<sup>+</sup> | x &le; 10}</span></li>
+            </ul>
+        </div>
+
+        <!-- Section 2: Subsets & Empty Set -->
+        <div class="section-card">
+            <h2>2. Subsets & The Empty Set</h2>
+            
+            <div class="grid-2-col">
+                <div>
+                    <h3>Subsets (&subseteq;)</h3>
+                    <p>A subset is a set where all of its elements are present within another set.</p>
+                    <p>If A={1,2,3} and B={1,2,3,4,5}, then <span class="formula">A &subseteq; B</span>.</p>
+                </div>
+                <div>
+                    <h3>Proper Subsets (&subset;)</h3>
+                    <p>If A is a subset of B, but A and B are not the exact same set, A is a <strong>proper subset</strong>.</p>
+                    <p>Condition: <span class="formula">A &subseteq; B</span> AND <span class="formula">A &ne; B</span>.</p>
+                </div>
+            </div>
+
+            <div class="callout">
+                <h3>The Empty Set (&empty;)</h3>
+                <p>An empty set (or null set) contains no elements. It is denoted by <span class="formula">&empty;</span> or <span class="formula">{ }</span>.</p>
+                <ul>
+                    <li>The empty set is a subset of <strong>every</strong> set. <span class="formula">&empty; &subseteq; A</span></li>
+                    <li><strong>Careful:</strong> <span class="formula">{&empty;}</span> is NOT an empty set. It is a set containing one element (the empty set).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 3: Cardinality & Power Set -->
+        <div class="section-card">
+            <h2>3. Cardinality & Power Sets</h2>
+            
+            <h3>Cardinality</h3>
+            <p>For a finite set S, the cardinality is the number of distinct elements it contains, denoted by <span class="formula">|S|</span>.</p>
+            <ul>
+                <li>If V = {a, e, i, o, u}, then <span class="formula">|V| = 5</span></li>
+                <li>The cardinality of the empty set is 0: <span class="formula">|&empty;| = 0</span></li>
+            </ul>
+
+            <h3>Power Set</h3>
+            <p>The power set of S, denoted <span class="formula">P(S)</span>, is the <strong>set of all possible subsets</strong> of S.</p>
+            <div class="callout">
+                <strong>Example:</strong> What is the power set of {1, 2}?<br>
+                <span class="formula">P({1, 2}) = { &empty;, {1}, {2}, {1, 2} }</span>
+            </div>
+            
+            <div class="warning">
+                <strong>Important Formula:</strong> If a set S has <em>n</em> elements, its Power Set has <strong>2<sup>n</sup></strong> elements.<br>
+                <span class="formula">|P(S)| = 2<sup>|S|</sup></span><br><br>
+                <em>Example:</em> What is the cardinality of P(&empty;)?<br>
+                Since |&empty;| = 0, the cardinality of P(&empty;) = 2<sup>0</sup> = <strong>1</strong>.
+            </div>
+        </div>
+
+        <!-- Section 4: Cartesian Product -->
+        <div class="section-card">
+            <h2>4. Cartesian Product</h2>
+            <p>The Cartesian product of A and B, denoted <span class="formula">A &times; B</span>, is the set of all possible ordered tuples (x, y) where x is from A and y is from B.</p>
+            <p><span class="formula">A &times; B = { (x,y) | x &isin; A &and; y &isin; B }</span></p>
+
+            <div class="callout">
+                <strong>Example:</strong> Let A = {1, 2, 3} and B = {a, b}<br>
+                <span class="formula">A &times; B = {(1,a), (1,b), (2,a), (2,b), (3,a), (3,b)}</span>
+            </div>
+
+            <ul>
+                <li><strong>Order matters!</strong> <span class="formula">A &times; B &ne; B &times; A</span></li>
+                <li><strong>Cardinality Formula:</strong> <span class="formula">|A &times; B| = |A| * |B|</span></li>
+            </ul>
+        </div>
+
+        <!-- Section 5: Set Operations -->
+        <div class="section-card">
+            <h2>5. Set Operations</h2>
+
+            <div class="grid-2-col">
+                <!-- Union -->
+                <div>
+                    <h3 style="color: var(--secondary-color);">1. Union (A &cup; B)</h3>
+                    <p>Combines all elements from both sets (no duplicates).</p>
+                    <p><span class="formula">A &cup; B = {x | x &isin; A &or; x &isin; B}</span></p>
+                    <p><em>Ex: {1,2,3} &cup; {1,3,5} = {1,2,3,5}</em></p>
+                </div>
+                
+                <!-- Intersection -->
+                <div>
+                    <h3 style="color: var(--secondary-color);">2. Intersection (A &cap; B)</h3>
+                    <p>Only the elements that are common to both sets.</p>
+                    <p><span class="formula">A &cap; B = {x | x &isin; A &and; x &isin; B}</span></p>
+                    <p><em>Ex: {1,2,3} &cap; {1,3,5} = {1,3}</em></p>
+                    <p><strong>Note:</strong> Two sets are disjoint if <span class="formula">A &cap; B = &empty;</span>.</p>
+                </div>
+
+                <!-- Difference -->
+                <div>
+                    <h3 style="color: var(--secondary-color);">3. Difference (A &minus; B)</h3>
+                    <p>Elements in A but NOT in B (Relative complement).</p>
+                    <p><span class="formula">A &minus; B = {x | x &isin; A &and; x &notin; B}</span></p>
+                    <p><em>Ex: {1,2,3} &minus; {1,3,5} = {2}</em></p>
+                </div>
+
+                <!-- Complement -->
+                <div>
+                    <h3 style="color: var(--secondary-color);">4. Complement (A' or A&#772;)</h3>
+                    <p>Elements in the Universal Set (U) that are NOT in A.</p>
+                    <p><span class="formula">A' = U &minus; A</span></p>
+                </div>
+            </div>
+
+            <div class="callout warning">
+                <strong>Principle of Inclusion and Exclusion:</strong><br>
+                To find the cardinality of a union set, use this formula:<br>
+                <span class="formula">|A &cup; B| = |A| + |B| &minus; |A &cap; B|</span>
+            </div>
+        </div>
+
+        <!-- Section 6: Sets with Quantifiers -->
+        <div class="section-card">
+            <h2>6. Truth Sets of Predicates</h2>
+            <p>The truth set of a predicate is the set of all elements in the domain that make the predicate true.</p>
+            <p><span class="formula">T = {x &isin; D | P(x) is true}</span></p>
+
+            <ul>
+                <li>What is the truth set of <span class="formula">P(x) &equiv; |x| = 1</span>? <br>
+                <strong>Answer:</strong> {1, -1}</li>
+                
+                <li>What is the truth set of <span class="formula">Q(x) &equiv; |x| = x</span>? <br>
+                <strong>Answer:</strong> [0, &infin;)  <em>(All non-negative real numbers)</em></li>
+                
+                <li>What is the truth set of <span class="formula">R(x) &equiv; x + 1 > x</span>? <br>
+                <strong>Answer:</strong> &#8477; <em>(The set of all real numbers)</em></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 CSE-2213 Study Guide | Built for GitHub Pages</p>
+    </footer>
+
+</body>
+</html>
