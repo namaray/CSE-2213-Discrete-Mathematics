@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicates & Quantifiers | CSE-2213 Study Guide</title>
+    <style>
+        /* CSS Styling - Consistent with Index */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e67e22; /* UIU Orange */
+            --background-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --table-border: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #ecf0f1;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid #ecf0f1;
+            padding: 5px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #ecf0f1;
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--background-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin-top: 25px;
+        }
+
+        .callout {
+            background-color: #fdf6e3;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .warning {
+            background-color: #fcf3f3;
+            border-left: 5px solid #e74c3c;
+        }
+
+        .formula {
+            font-family: 'Courier New', Courier, monospace;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #d35400;
+        }
+
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2-col { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Predicates & Quantifiers</h1>
+        <p>Midterm Syllabus • Classes 4 - 5</p>
+        <a href="index.html" class="back-link">← Back to Syllabus</a>
+    </header>
+
+    <div class="container">
+
+        <!-- Section 1: Predicates -->
+        <div class="section-card">
+            <h2>1. Introduction to Predicates</h2>
+            <p>Consider the statement: <span class="formula">x + y = 10</span>. Is it true or false? We cannot know until we assign values to the variables (parameters). This is a proposition with "gaps".</p>
+            
+            <div class="callout">
+                <strong>Definition:</strong> A <strong>predicate</strong> is a propositional function. It takes one or more objects as input and returns a proposition (which can then be evaluated as True or False). 
+                <br><br>
+                <em>Example:</em> Let <span class="formula">P(x)</span> denote the statement "x > 3".<br>
+                <span class="formula">P(4)</span> is True (because 4 > 3).<br>
+                <span class="formula">P(2)</span> is False (because 2 is not > 3).
+            </div>
+
+            <h3>Multiple Parameters</h3>
+            <p>Predicates can have multiple parameters. <br>
+            Let <span class="formula">Q(x, y)</span> denote "x = y + 3".</p>
+            <ul>
+                <li><span class="formula">Q(5, 2)</span> is True (5 = 2 + 3).</li>
+                <li><span class="formula">Q(3, 0)</span> is True (3 = 0 + 3).</li>
+            </ul>
+        </div>
+
+        <!-- Section 2: Quantifiers -->
+        <div class="section-card">
+            <h2>2. Quantifiers (&forall; and &exist;)</h2>
+            <p>Instead of plugging in specific values, we can "quantify" objects across a whole domain (e.g., all real numbers, all students). Quantification expresses the extent to which a predicate is true over a quantity of elements.</p>
+
+            <div class="grid-2-col">
+                <div>
+                    <h3>Universal Quantifier (&forall;)</h3>
+                    <p>Applies to <strong>all</strong> members of a specified set. Read as "for all" or "for every".</p>
+                    <p><span class="formula">&forall;x P(x)</span> means: For <em>every</em> value of x in the domain, P(x) is true.</p>
+                </div>
+                <div>
+                    <h3>Existential Quantifier (&exist;)</h3>
+                    <p>Applies to <strong>at least one</strong> member of a specified set. Read as "there exists" or "for some".</p>
+                    <p><span class="formula">&exist;x Q(x)</span> means: For <em>some</em> value of x in the domain, Q(x) is true.</p>
+                </div>
+            </div>
+
+            <h3>Logical Equivalences with Quantifiers</h3>
+            <div class="callout">
+                <ul>
+                    <li><span class="formula">&forall;x (P(x) &and; Q(x)) &equiv; &forall;x P(x) &and; &forall;x Q(x)</span><br>
+                    <em>"Every CS student learns programming AND discrete math"</em></li>
+                    <li><span class="formula">&exist;x (P(x) &or; Q(x)) &equiv; &exist;x P(x) &or; &exist;x Q(x)</span><br>
+                    <em>"Some CS student excels in hardware OR software"</em></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 3: De Morgan's Laws -->
+        <div class="section-card">
+            <h2>3. De Morgan’s Laws for Quantifiers</h2>
+            <p>When you negate a quantifier, the quantifier flips (&forall; becomes &exist;, and vice versa), and you negate the predicate inside.</p>
+            
+            <div class="grid-2-col">
+                <div>
+                    <h3>Negating Universal</h3>
+                    <p><span class="formula">&not;(&forall;x E(x)) &equiv; &exist;x &not;E(x)</span></p>
+                    <ul>
+                        <li><strong>Statement:</strong> Everyone is evil.</li>
+                        <li><strong>Negation:</strong> Not everyone is evil.</li>
+                        <li><strong>Equivalent to:</strong> Someone is good (not evil).</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Negating Existential</h3>
+                    <p><span class="formula">&not;(&exist;x R(x)) &equiv; &forall;x &not;R(x)</span></p>
+                    <ul>
+                        <li><strong>Statement:</strong> Rich people exist.</li>
+                        <li><strong>Negation:</strong> Rich people do not exist.</li>
+                        <li><strong>Equivalent to:</strong> Everyone is poor (not rich).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="warning">
+                <strong>Example:</strong> What is the negation of <span class="formula">&forall;x (x<sup>2</sup> > x)</span>?<br>
+                <strong>Answer:</strong> <span class="formula">&exist;x &not;(x<sup>2</sup> > x)</span>, which is <span class="formula">&exist;x (x<sup>2</sup> &le; x)</span>.
+            </div>
+        </div>
+
+        <!-- Section 4: Nested Quantifiers -->
+        <div class="section-card">
+            <h2>4. Nested Quantifiers</h2>
+            <p>Nested quantifiers occur when one quantifier appears within the scope of another. They are read from <strong>left-to-right</strong>.</p>
+            
+            <div class="callout">
+                <p><span class="formula">&forall;x &exist;y (x + y = 0)</span></p>
+                <p><strong>Read as:</strong> "For every real number x, there exists a corresponding real number y such that x + y = 0."</p>
+            </div>
+
+            <h3>Does Order Matter?</h3>
+            <ul>
+                <li><strong>Same Quantifiers:</strong> Order does <em>not</em> matter.<br> 
+                <span class="formula">&forall;x &forall;y (x+y = y+x) &equiv; &forall;y &forall;x (x+y = y+x)</span></li>
+                <li><strong>Mixed Quantifiers:</strong> Order <strong>changes the meaning completely!</strong></li>
+            </ul>
+
+            <div class="grid-2-col">
+                <div>
+                    <h3 style="margin-top: 0; color:#e74c3c;">&forall;x &exist;y (x + y = 0)</h3>
+                    <p><strong>Meaning:</strong> Pick any x you want. I can find a y that makes it zero. (True! If you pick 5, I pick -5).</p>
+                </div>
+                <div>
+                    <h3 style="margin-top: 0; color:#e74c3c;">&exist;y &forall;x (x + y = 0)</h3>
+                    <p><strong>Meaning:</strong> There is one single magic number y that, when added to ANY number x, equals 0. (False! No single number works for everything).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Translating English to Logic -->
+        <div class="section-card">
+            <h2>5. Translating English to Logical Expressions</h2>
+            
+            <p><strong>Example 1:</strong> "Every student in this class has studied calculus."<br>
+            Let <span class="formula">C(x)</span> = x has studied calculus. Let <span class="formula">S(x)</span> = x is a student in this class.<br>
+            Translation: <span class="formula">&forall;x (S(x) &rarr; C(x))</span></p>
+
+            <p><strong>Example 2:</strong> "Some student in this class has visited Mexico."<br>
+            Let <span class="formula">P(x)</span> = x visited Mexico.<br>
+            Translation: <span class="formula">&exist;x (S(x) &and; P(x))</span></p>
+
+            <div class="callout">
+                <strong>Complex Translation Example:</strong><br>
+                Let domain be all students in class.<br>
+                C(x) = x has a cat, D(x) = x has a dog, F(x) = x has a ferret.
+                <ul>
+                    <li>"A student in your class has a cat, a dog, and a ferret."<br>
+                    <span class="formula">&exist;x (C(x) &and; D(x) &and; F(x))</span></li>
+                    <li>"All students in your class have a cat, a dog, or a ferret."<br>
+                    <span class="formula">&forall;x (C(x) &or; D(x) &or; F(x))</span></li>
+                    <li>"No student in your class has a cat, a dog, and a ferret."<br>
+                    <span class="formula">&forall;x &not;(C(x) &and; D(x) &and; F(x))</span> OR <span class="formula">&not;&exist;x (C(x) &and; D(x) &and; F(x))</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 6: Evaluating Truth Values -->
+        <div class="section-card">
+            <h2>6. Finding Truth Values of Expressions</h2>
+            
+            <p>Determine the truth value of: <span class="formula">(&exist;x (x<sup>2</sup> = 2)) &rarr; (&forall;y (y<sup>2</sup> &ge; y))</span></p>
+            <ol>
+                <li><strong>Evaluate the Antecedent (Hypothesis):</strong> Is there a real number whose square is 2? Yes, x = &radic;2. So the antecedent is <strong>True</strong>.</li>
+                <li><strong>Evaluate the Consequent (Conclusion):</strong> Is it true that for ALL real numbers y, y<sup>2</sup> &ge; y? Let's test a fraction. If y = 0.5, then 0.5<sup>2</sup> = 0.25. 0.25 is NOT &ge; 0.5. So the consequent is <strong>False</strong>.</li>
+                <li><strong>Final Result:</strong> True &rarr; False evaluates to <strong>False</strong>.</li>
+            </ol>
+
+            <div class="callout">
+                <p><strong>Quick Fire True/False (Domain: Real Numbers):</strong></p>
+                <ul>
+                    <li><span class="formula">&forall;x &exist;y (x + y = 0)</span> &rarr; <strong>True</strong></li>
+                    <li><span class="formula">&exist;y &forall;x (x + y = 0)</span> &rarr; <strong>False</strong></li>
+                    <li><span class="formula">&forall;x &exist;y (xy = 0)</span> &rarr; <strong>True</strong> (Always pick y=0)</li>
+                    <li><span class="formula">&exist;y &forall;x (xy = 0)</span> &rarr; <strong>True</strong> (There is a magic y, y=0, that makes every x multiply to 0)</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 CSE-2213 Study Guide | Built for GitHub Pages</p>
+    </footer>
+
+</body>
+</html>
