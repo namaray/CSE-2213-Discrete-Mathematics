@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Proof Techniques | CSE-2213 Study Guide</title>
+    <style>
+        /* CSS Styling - Consistent with Index */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e67e22; /* UIU Orange */
+            --background-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --table-border: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #ecf0f1;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid #ecf0f1;
+            padding: 5px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #ecf0f1;
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--background-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin-top: 25px;
+        }
+
+        .callout {
+            background-color: #fdf6e3;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .proof-box {
+            background-color: #f9f9f9;
+            border-left: 5px solid #2ecc71;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Georgia', serif;
+        }
+
+        .formula {
+            font-family: 'Courier New', Courier, monospace;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #d35400;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid var(--table-border);
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2-col { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Basic Proof Techniques</h1>
+        <p>Midterm Syllabus • Classes 6 - 7</p>
+        <a href="index.html" class="back-link">← Back to Syllabus</a>
+    </header>
+
+    <div class="container">
+
+        <!-- Section 1: Terminology -->
+        <div class="section-card">
+            <h2>1. Proof Terminology</h2>
+            <ul>
+                <li><strong>Theorem:</strong> A statement that can be shown to be true.</li>
+                <li><strong>Proof:</strong> A valid argument that establishes the truth of a theorem.</li>
+                <li><strong>Axioms:</strong> Statements we assume to be logically true (no proof needed).</li>
+                <li><strong>Lemma:</strong> A less important theorem that is helpful in the proof of other, larger results.</li>
+                <li><strong>Corollary:</strong> A theorem that can be established directly from a theorem that has just been proved.</li>
+                <li><strong>Conjecture:</strong> A statement that is being proposed to be a true statement (but hasn't been proven yet).</li>
+            </ul>
+        </div>
+
+        <!-- Section 2: Standard Forms -->
+        <div class="section-card">
+            <h2>2. Standard Forms of Numbers</h2>
+            <p>Before proving mathematical statements, you must know how to translate English number properties into algebraic formulas.</p>
+            
+            <table>
+                <tr>
+                    <th>Type of Number</th>
+                    <th>Standard Algebraic Form</th>
+                </tr>
+                <tr>
+                    <td><strong>Even number</strong></td>
+                    <td><span class="formula">2k</span>, where k is an integer</td>
+                </tr>
+                <tr>
+                    <td><strong>Odd number</strong></td>
+                    <td><span class="formula">2k + 1</span> (or 2k - 1), where k is an integer</td>
+                </tr>
+                <tr>
+                    <td><strong>Multiple of n</strong></td>
+                    <td><span class="formula">kn</span>, where n is an integer</td>
+                </tr>
+                <tr>
+                    <td><strong>Division by k gives remainder r</strong></td>
+                    <td><span class="formula">kn + r</span>, where n is an integer</td>
+                </tr>
+                <tr>
+                    <td><strong>Perfect square</strong></td>
+                    <td><span class="formula">k<sup>2</sup></span>, where k is an integer</td>
+                </tr>
+                <tr>
+                    <td><strong>Rational number</strong></td>
+                    <td><span class="formula">p / q</span>, where p, q are integers and q &ne; 0</td>
+                </tr>
+                <tr>
+                    <td><strong>Irrational number</strong></td>
+                    <td><em>NO STANDARD FORM</em> (Cannot be written as p/q)</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Section 3: Vacuous & Trivial Proofs -->
+        <div class="section-card">
+            <h2>3. Vacuous and Trivial Proofs</h2>
+            <p>Recall the truth table for a conditional statement <span class="formula">p &rarr; q</span>. It is true when p is false, and it is true when q is true. We can use these facts as shortcuts!</p>
+            
+            <div class="grid-2-col">
+                <div>
+                    <h3>Vacuous Proof</h3>
+                    <p>If we prove a conditional statement by disproving its hypothesis (showing <span class="formula">p</span> is False), the implication is automatically True.</p>
+                    <div class="callout">
+                        <strong>Example:</strong> Prove P(0) is true, where P(n) &equiv; (n > 1) &rarr; (n<sup>2</sup> > n).<br><br>
+                        <em>Proof:</em> For n = 0, the hypothesis (0 > 1) is False. Because a False premise always implies a True conclusion, the statement is vacuously true.
+                    </div>
+                </div>
+                <div>
+                    <h3>Trivial Proof</h3>
+                    <p>If we prove a conditional statement by proving its conclusion (showing <span class="formula">q</span> is True), the implication is automatically True.</p>
+                    <div class="callout">
+                        <strong>Example:</strong> Prove P(0) is true, where P(n) &equiv; (a &ge; b) &rarr; (a<sup>n</sup> &ge; b<sup>n</sup>).<br><br>
+                        <em>Proof:</em> For n = 0, the conclusion becomes (a<sup>0</sup> &ge; b<sup>0</sup>), which is (1 &ge; 1). This is True. Because the conclusion is True, the statement is trivially true.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Direct Proof -->
+        <div class="section-card">
+            <h2>4. Direct Proof</h2>
+            <p>A direct proof of a conditional statement <span class="formula">p &rarr; q</span> assumes that <strong>p is true</strong>, and uses axioms, definitions, and theorems to show that <strong>q must also be true</strong>.</p>
+            
+            <div class="proof-box">
+                <strong>Theorem:</strong> If n is an even integer, then n<sup>2</sup> is even.<br><br>
+                <strong>Proof:</strong>
+                <ol>
+                    <li>Assume that n is an even integer. (Assume <em>p</em> is true).</li>
+                    <li>By definition, this implies there is some integer k such that <span class="formula">n = 2k</span>.</li>
+                    <li>We want to find n<sup>2</sup>. So, we square both sides: <br>
+                    <span class="formula">n<sup>2</sup> = (2k)<sup>2</sup> = 4k<sup>2</sup></span></li>
+                    <li>We need to show this result is even (a multiple of 2). Let's factor out a 2: <br>
+                    <span class="formula">n<sup>2</sup> = 2(2k<sup>2</sup>)</span></li>
+                    <li>Since <em>k</em> is an integer, <em>2k<sup>2</sup></em> is also an integer.</li>
+                    <li>Since n<sup>2</sup> can be written as 2 times an integer, it follows by definition that n<sup>2</sup> is even. <strong>[Proved]</strong></li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Section 5: Proof by Contraposition -->
+        <div class="section-card">
+            <h2>5. Proof by Contraposition (Indirect Proof)</h2>
+            <p>Sometimes, <span class="formula">p &rarr; q</span> is hard to prove directly. Because a statement is logically equivalent to its contrapositive, we can instead prove <span class="formula">&not;q &rarr; &not;p</span>.</p>
+            <p><strong>Steps:</strong> Assume <span class="formula">q</span> is False, and prove that <span class="formula">p</span> must be False.</p>
+
+            <div class="proof-box">
+                <strong>Theorem:</strong> If n is an integer and n<sup>2</sup> is odd, then n is odd.<br><br>
+                <strong>Proof:</strong> 
+                <p>Instead of proving <span class="formula">p &rarr; q</span> (If n<sup>2</sup> is odd &rarr; n is odd), we will prove the contrapositive <span class="formula">&not;q &rarr; &not;p</span> (If n is even &rarr; n<sup>2</sup> is even).</p>
+                <ol>
+                    <li>Assume the conclusion is false: n is an even integer.</li>
+                    <li>By definition, <span class="formula">n = 2k</span> for some integer k.</li>
+                    <li>Then, <span class="formula">n<sup>2</sup> = (2k)<sup>2</sup> = 4k<sup>2</sup> = 2(2k<sup>2</sup>)</span>.</li>
+                    <li>Since n<sup>2</sup> is 2 times an integer, n<sup>2</sup> is even.</li>
+                    <li>Since the contrapositive is true, the original statement is also true. <strong>[Proved]</strong></li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Section 6: Proof by Contradiction -->
+        <div class="section-card">
+            <h2>6. Proof by Contradiction</h2>
+            <p>To prove a statement <span class="formula">p</span> is true, we assume the opposite (<span class="formula">&not;p</span> is true). We then show that this assumption logically leads to a mathematical impossibility or contradiction. Therefore, our assumption must be false, meaning the original statement must be true.</p>
+            
+            <p>For a conditional statement "If p, then q", the negation is <span class="formula">p &and; &not;q</span>. So we assume p is true AND q is false, and look for a contradiction.</p>
+
+            <div class="proof-box">
+                <strong>Theorem:</strong> Prove that &radic;2 is irrational.<br><br>
+                <strong>Proof:</strong>
+                <ol>
+                    <li>Assume the opposite is true: &radic;2 is a <strong>rational</strong> number.</li>
+                    <li>By definition, &radic;2 can be expressed as a fraction <span class="formula">p/q</span>, where p and q are integers, q &ne; 0, and <em>they have no common factors other than 1</em> (the fraction is fully simplified).</li>
+                    <li>So, <span class="formula">&radic;2 = p/q</span></li>
+                    <li>Square both sides: <span class="formula">2 = p<sup>2</sup> / q<sup>2</sup></span></li>
+                    <li>Multiply by q<sup>2</sup>: <span class="formula">p<sup>2</sup> = 2q<sup>2</sup></span></li>
+                    <li>This means p<sup>2</sup> is an even number. If a square is even, the root is even. Therefore, <strong>p must be even</strong>. Let <span class="formula">p = 2k</span>.</li>
+                    <li>Substitute p=2k back into the equation: <span class="formula">(2k)<sup>2</sup> = 2q<sup>2</sup></span> &rarr; <span class="formula">4k<sup>2</sup> = 2q<sup>2</sup></span></li>
+                    <li>Divide by 2: <span class="formula">2k<sup>2</sup> = q<sup>2</sup></span></li>
+                    <li>This means q<sup>2</sup> is even. Therefore, <strong>q must be even</strong>.</li>
+                    <li><strong>The Contradiction:</strong> We just showed that both p and q are even. This means they share a common factor of 2. But in step 2, we stated p and q have NO common factors.</li>
+                    <li>Because our assumption led to a contradiction, the assumption must be false. Therefore, &radic;2 is irrational. <strong>[Proved]</strong></li>
+                </ol>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 CSE-2213 Study Guide | Built for GitHub Pages</p>
+    </footer>
+
+</body>
+</html>
