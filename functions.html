@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions | CSE-2213 Study Guide</title>
+    <style>
+        /* CSS Styling - Consistent with Index */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e67e22; /* UIU Orange */
+            --background-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --table-border: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #ecf0f1;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid #ecf0f1;
+            padding: 5px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #ecf0f1;
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--background-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin-top: 25px;
+        }
+
+        .callout {
+            background-color: #fdf6e3;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .warning {
+            background-color: #fcf3f3;
+            border-left: 5px solid #e74c3c;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .formula {
+            font-family: 'Courier New', Courier, monospace;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #d35400;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid var(--table-border);
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2-col { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Functions</h1>
+        <p>Final Syllabus • Class 16</p>
+        <a href="index.html" class="back-link">← Back to Syllabus</a>
+    </header>
+
+    <div class="container">
+
+        <!-- Section 1: Intro to Functions -->
+        <div class="section-card">
+            <h2>1. Introduction to Functions</h2>
+            <p>Let A and B be non-empty sets. A <strong>function</strong> <span class="formula">f</span> from set A to set B is the mapping of every element of A to a single unique element of B.</p>
+            <ul>
+                <li><strong>Set Notation:</strong> <span class="formula">f : A &rarr; B</span></li>
+                <li><strong>Value Notation:</strong> <span class="formula">f(a) = b</span> (if the function <span class="formula">f</span> maps the value <span class="formula">a &isin; A</span> to a value <span class="formula">b &isin; B</span>)</li>
+            </ul>
+            <div class="warning">
+                <strong>CAUTION:</strong> If <span class="formula">f(x)</span> returns multiple values for the same value of <span class="formula">x</span>, it is <strong>NOT a function</strong>. Every member of the domain must map to exactly one unique element in the codomain.
+            </div>
+
+            <h3>Domain, Codomain, and Range</h3>
+            <p>For a function <span class="formula">f : M &rarr; T</span>:</p>
+            <ul>
+                <li><strong>Domain (M):</strong> The set of all possible input values.</li>
+                <li><strong>Codomain (T):</strong> The set of all potential output values.</li>
+                <li><strong>Range / Image (R):</strong> The set of only those elements that are actual outputs of <span class="formula">f</span>. <span class="formula">R &subseteq; T</span>.</li>
+            </ul>
+        </div>
+
+        <!-- Section 2: Properties of Functions -->
+        <div class="section-card">
+            <h2>2. Properties of Functions</h2>
+            
+            <div class="grid-2-col">
+                <div>
+                    <h3>One-to-One (Injection)</h3>
+                    <p>A function maps distinct elements of its domain to distinct elements of its codomain. No two different inputs are mapped to the same output.</p>
+                    <p><strong>Check:</strong> For all <span class="formula">x1, x2 &isin; A</span>, if <span class="formula">f(x1) = f(x2)</span>, then <span class="formula">x1 = x2</span>.</p>
+                </div>
+                <div>
+                    <h3>Onto (Surjection)</h3>
+                    <p>Every element in the codomain has at least one pre-image in the domain. In other words, the Codomain is equal to the Range.</p>
+                    <p><strong>Check:</strong> For each <span class="formula">y &isin; B</span>, there exists <span class="formula">x &isin; A</span> such that <span class="formula">f(x) = y</span>.</p>
+                </div>
+            </div>
+
+            <div class="callout">
+                <h3>Bijections</h3>
+                <p>A bijection (or bijective function) is a function that is <strong>both one-to-one and onto</strong>. It establishes a perfect "one-to-one correspondence" between elements of its domain and elements of its codomain.</p>
+            </div>
+            
+            <p><strong>Note:</strong> A function can change its properties with the change of domains. For example, <span class="formula">f(x) = x<sup>2</sup></span> is not one-to-one from <strong>&#8477; &rarr; &#8477;</strong>, but it is one-to-one from <strong>&#8477;<sup>+</sup> &rarr; &#8477;</strong>.</p>
+        </div>
+
+        <!-- Section 3: Operations -->
+        <div class="section-card">
+            <h2>3. Operations on Functions</h2>
+            
+            <h3>Addition and Multiplication</h3>
+            <p>Functions of the <strong>same domain</strong> can be added or multiplied:</p>
+            <ul>
+                <li><strong>Addition:</strong> <span class="formula">(f + g)(x) = f(x) + g(x)</span></li>
+                <li><strong>Multiplication:</strong> <span class="formula">(fg)(x) = f(x)g(x)</span></li>
+            </ul>
+
+            <h3>Inverse of a Function</h3>
+            <p>The inverse of a function exists <strong>if and only if the function is a bijection</strong> (called an invertible function).</p>
+            <p>If <span class="formula">f(a) = b</span>, then the inverse function <span class="formula">f<sup>-1</sup></span> is defined as <span class="formula">f<sup>-1</sup>(b) = a</span>.</p>
+            
+            <div class="callout">
+                <strong>How to find the inverse:</strong>
+                <ol>
+                    <li>Replace <span class="formula">f(x)</span> with <span class="formula">y</span>.</li>
+                    <li>Interchange <span class="formula">x</span> and <span class="formula">y</span>.</li>
+                    <li>Solve the equation for <span class="formula">y</span>.</li>
+                    <li>Replace <span class="formula">y</span> with <span class="formula">f<sup>-1</sup>(x)</span>.</li>
+                </ol>
+            </div>
+            
+            <p><em>Example:</em> Find the inverse of <span class="formula">f(x) = x + 1</span>.</p>
+            <ul>
+                <li><span class="formula">y = x + 1</span></li>
+                <li><span class="formula">x = y + 1</span> (Interchange)</li>
+                <li><span class="formula">y = x - 1</span></li>
+                <li><span class="formula">f<sup>-1</sup>(x) = x - 1</span></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 CSE-2213 Study Guide | Built for GitHub Pages</p>
+    </footer>
+
+</body>
+</html>

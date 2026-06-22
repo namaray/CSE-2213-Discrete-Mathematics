@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trees & Applications | CSE-2213 Study Guide</title>
+    <style>
+        /* CSS Styling - Consistent with Index */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e67e22;
+            --background-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --table-border: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #ecf0f1;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid #ecf0f1;
+            padding: 5px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #ecf0f1;
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--background-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin-top: 25px;
+        }
+
+        .callout {
+            background-color: #fdf6e3;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .warning {
+            background-color: #fcf3f3;
+            border-left: 5px solid #e74c3c;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .formula {
+            font-family: 'Courier New', Courier, monospace;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #d35400;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid var(--table-border);
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2-col { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Trees & Applications</h1>
+        <p>Final Syllabus • Classes 21 - 23</p>
+        <a href="index.html" class="back-link">← Back to Syllabus</a>
+    </header>
+
+    <div class="container">
+
+        <!-- Section 1: Intro to Trees -->
+        <div class="section-card">
+            <h2>1. Introduction to Trees</h2>
+            <p>A <strong>tree</strong> is a connected undirected graph with no simple circuits.</p>
+            <ul>
+                <li>Because a tree cannot have a simple circuit, a tree cannot contain multiple edges or loops. Therefore, any tree must be a <strong>simple graph</strong>.</li>
+            </ul>
+
+            <div class="callout warning">
+                <strong>Theorem:</strong><br>
+                An undirected graph is a tree if and only if there is a <strong>unique simple path</strong> between any two of its vertices.
+            </div>
+            
+            <p><strong>Forest:</strong> A graph that has no simple circuits but is not necessarily connected. Each of its connected components is a tree.</p>
+        </div>
+
+        <!-- Section 2: Rooted Trees -->
+        <div class="section-card">
+            <h2>2. Rooted Trees</h2>
+            <p>A rooted tree is a tree in which one vertex has been designated as the <strong>root</strong> and every edge is directed away from the root.</p>
+            
+            <h3>Terminology</h3>
+            <div class="grid-2-col">
+                <div>
+                    <ul>
+                        <li><strong>Parent:</strong> The vertex <span class="formula">u</span> such that there is a directed edge from <span class="formula">u</span> to <span class="formula">v</span>.</li>
+                        <li><strong>Child:</strong> If <span class="formula">u</span> is the parent of <span class="formula">v</span>, then <span class="formula">v</span> is the child of <span class="formula">u</span>.</li>
+                        <li><strong>Siblings:</strong> Vertices with the same parent.</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li><strong>Leaf:</strong> A vertex with no children (degree = 1).</li>
+                        <li><strong>Internal Vertex:</strong> A vertex that has at least one child.</li>
+                        <li><strong>Ancestors & Descendants:</strong> Vertices on the path from the root to <span class="formula">v</span> / vertices below <span class="formula">v</span>.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Properties of Trees -->
+        <div class="section-card">
+            <h2>3. Properties of Trees</h2>
+            
+            <p>An <strong>m-ary tree</strong> is a rooted tree where every internal vertex has no more than <span class="formula">m</span> children. It is a <strong>full m-ary tree</strong> if every internal vertex has exactly <span class="formula">m</span> children. An m-ary tree with <span class="formula">m = 2</span> is called a <strong>binary tree</strong>.</p>
+            
+            <div class="callout">
+                <strong>Important Theorems:</strong>
+                <ol>
+                    <li>A tree with <span class="formula">n</span> vertices has exactly <strong><span class="formula">n - 1</span> edges</strong>.</li>
+                    <li>A full m-ary tree with <span class="formula">i</span> internal vertices contains <strong><span class="formula">n = m*i + 1</span></strong> vertices.</li>
+                    <li>There are at most <strong><span class="formula">m<sup>h</sup></span></strong> leaves in an m-ary tree of height <span class="formula">h</span>.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Section 4: Tree Traversal -->
+        <div class="section-card">
+            <h2>4. Tree Traversal</h2>
+            <p>Tree traversal algorithms provide a process for systematically visiting every vertex of an ordered rooted tree.</p>
+            
+            <h3>Universal Address System & Traversals</h3>
+            <ul>
+                <li><strong>Preorder Traversal:</strong> Visit the root, traverse the left subtree, traverse the right subtree. (Root, Left, Right)</li>
+                <li><strong>Inorder Traversal:</strong> Traverse the left subtree, visit the root, traverse the right subtree. (Left, Root, Right)</li>
+                <li><strong>Postorder Traversal:</strong> Traverse the left subtree, traverse the right subtree, visit the root. (Left, Right, Root)</li>
+            </ul>
+
+            <div class="warning">
+                <strong>Applications:</strong><br>
+                Traversals are used heavily in computer science for parsing arithmetic expressions (Prefix, Infix, Postfix notations).
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 CSE-2213 Study Guide | Built for GitHub Pages</p>
+    </footer>
+
+</body>
+</html>

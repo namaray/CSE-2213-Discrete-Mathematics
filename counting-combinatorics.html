@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counting & Combinatorics | CSE-2213 Study Guide</title>
+    <style>
+        /* CSS Styling - Consistent with Index */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e67e22;
+            --background-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --table-border: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #ecf0f1;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid #ecf0f1;
+            padding: 5px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #ecf0f1;
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--background-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin-top: 25px;
+        }
+
+        .callout {
+            background-color: #fdf6e3;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .warning {
+            background-color: #fcf3f3;
+            border-left: 5px solid #e74c3c;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .formula {
+            font-family: 'Courier New', Courier, monospace;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #d35400;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid var(--table-border);
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2-col { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Counting & Combinatorics</h1>
+        <p>Final Syllabus • Classes 13 - 15</p>
+        <a href="index.html" class="back-link">← Back to Syllabus</a>
+    </header>
+
+    <div class="container">
+
+        <!-- Section 1: Basics of Counting -->
+        <div class="section-card">
+            <h2>1. Basics of Counting</h2>
+            
+            <div class="grid-2-col">
+                <div>
+                    <h3>The Product Rule</h3>
+                    <p>If a procedure can be broken down into a sequence of two tasks, where the first task can be done in <span class="formula">n1</span> ways and the second task can be done in <span class="formula">n2</span> ways, then there are <span class="formula">n1 &times; n2</span> ways to do the procedure.</p>
+                </div>
+                <div>
+                    <h3>The Sum Rule</h3>
+                    <p>If a task can be done either in one of <span class="formula">n1</span> ways or in one of <span class="formula">n2</span> ways (where the sets of ways are disjoint), then there are <span class="formula">n1 + n2</span> ways to do the task.</p>
+                </div>
+            </div>
+
+            <div class="callout warning">
+                <strong>Principle of Inclusion-Exclusion (Subtraction Rule):</strong><br>
+                If the sets of ways to do tasks are NOT disjoint, you must subtract the overlap.<br>
+                <span class="formula">|A &cup; B| = |A| + |B| - |A &cap; B|</span>
+            </div>
+        </div>
+
+        <!-- Section 2: The Pigeonhole Principle -->
+        <div class="section-card">
+            <h2>2. The Pigeonhole Principle</h2>
+            <p>If <span class="formula">k</span> is a positive integer and <span class="formula">k + 1</span> or more objects are placed into <span class="formula">k</span> boxes, then there is at least one box containing two or more of the objects.</p>
+            
+            <div class="callout">
+                <strong>Generalized Pigeonhole Principle:</strong><br>
+                If <span class="formula">N</span> objects are placed into <span class="formula">k</span> boxes, then there is at least one box containing at least <span class="formula">&lceil;N/k&rceil;</span> objects.
+            </div>
+        </div>
+
+        <!-- Section 3: Permutations -->
+        <div class="section-card">
+            <h2>3. Permutations (Order Matters)</h2>
+            <p>A permutation of a set of distinct objects is an <strong>ordered</strong> arrangement of these objects.</p>
+            
+            <h3>Formula for r-Permutations</h3>
+            <p>The number of <span class="formula">r</span>-permutations of a set with <span class="formula">n</span> distinct elements is denoted by <span class="formula">P(n, r)</span>.</p>
+            <p><span class="formula">P(n, r) = n! / (n - r)!</span></p>
+
+            <div class="callout">
+                <strong>Example:</strong> How many ways can 3 students be selected for 1st, 2nd, and 3rd prize out of 10 students?<br>
+                <span class="formula">P(10, 3) = 10! / (10 - 3)! = 10 &times; 9 &times; 8 = 720</span>
+            </div>
+        </div>
+
+        <!-- Section 4: Combinations -->
+        <div class="section-card">
+            <h2>4. Combinations (Order Doesn't Matter)</h2>
+            <p>An <span class="formula">r</span>-combination of elements of a set is an <strong>unordered</strong> selection of <span class="formula">r</span> elements from the set.</p>
+            
+            <h3>Formula for r-Combinations</h3>
+            <p>The number of <span class="formula">r</span>-combinations of a set with <span class="formula">n</span> distinct elements is denoted by <span class="formula">C(n, r)</span> or <span class="formula">(n choose r)</span>.</p>
+            <p><span class="formula">C(n, r) = n! / (r! &times; (n - r)!)</span></p>
+
+            <div class="callout">
+                <strong>Example:</strong> How many ways can a committee of 3 students be chosen from a group of 10?<br>
+                <span class="formula">C(10, 3) = 10! / (3! &times; 7!) = (10 &times; 9 &times; 8) / (3 &times; 2 &times; 1) = 120</span>
+            </div>
+            
+            <p><strong>Note:</strong> <span class="formula">C(n, r) = C(n, n-r)</span>. Choosing <span class="formula">r</span> elements to include is the same as choosing <span class="formula">n-r</span> elements to leave out.</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 CSE-2213 Study Guide | Built for GitHub Pages</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Theory | CSE-2213 Study Guide</title>
+    <style>
+        /* CSS Styling - Consistent with Index */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e67e22;
+            --background-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --table-border: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #ecf0f1;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid #ecf0f1;
+            padding: 5px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #ecf0f1;
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--background-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin-top: 25px;
+        }
+
+        .callout {
+            background-color: #fdf6e3;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .warning {
+            background-color: #fcf3f3;
+            border-left: 5px solid #e74c3c;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .formula {
+            font-family: 'Courier New', Courier, monospace;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #d35400;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid var(--table-border);
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2-col { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Graph Theory</h1>
+        <p>Final Syllabus • Classes 17 - 20</p>
+        <a href="index.html" class="back-link">← Back to Syllabus</a>
+    </header>
+
+    <div class="container">
+
+        <!-- Section 1: Intro to Graphs -->
+        <div class="section-card">
+            <h2>1. Introduction to Graphs</h2>
+            <p>A graph <span class="formula">G = (V, E)</span> consists of <span class="formula">V</span>, a nonempty set of vertices (or nodes) and <span class="formula">E</span>, a set of edges. Each edge has either one or two vertices associated with it, called its endpoints.</p>
+            
+            <h3>Types of Graphs</h3>
+            <ul>
+                <li><strong>Simple Graph:</strong> Undirected edges, no multiple edges between the same two vertices, no loops (edges from a vertex to itself).</li>
+                <li><strong>Multigraph:</strong> Undirected edges, multiple edges allowed between the same vertices.</li>
+                <li><strong>Directed Graph (Digraph):</strong> Edges have direction (indicated by arrows).</li>
+            </ul>
+
+            <div class="callout">
+                <strong>Handshaking Theorem:</strong><br>
+                For any undirected graph with <span class="formula">e</span> edges, the sum of the degrees of the vertices is <span class="formula">2e</span>.<br>
+                <span class="formula">&sum; deg(v) = 2e</span>
+            </div>
+        </div>
+
+        <!-- Section 2: Special Graph Structures -->
+        <div class="section-card">
+            <h2>2. Special Graph Structures</h2>
+            
+            <div class="grid-2-col">
+                <div>
+                    <h3>Complete Graphs (<span class="formula">K<sub>n</sub></span>)</h3>
+                    <p>A simple graph that contains exactly one edge between each pair of distinct vertices. It has <span class="formula">n(n-1)/2</span> edges.</p>
+                </div>
+                <div>
+                    <h3>Bipartite Graphs</h3>
+                    <p>A graph whose vertex set can be partitioned into two disjoint sets <span class="formula">V1</span> and <span class="formula">V2</span> such that every edge connects a vertex in <span class="formula">V1</span> to one in <span class="formula">V2</span>. (No edges within the same set).</p>
+                </div>
+            </div>
+
+            <div class="warning">
+                <strong>Graph Isomorphism:</strong><br>
+                Two graphs <span class="formula">G1</span> and <span class="formula">G2</span> are isomorphic if there is a one-to-one and onto function from the vertices of <span class="formula">G1</span> to the vertices of <span class="formula">G2</span> that preserves adjacency. (They have the same structure but different labels).
+            </div>
+        </div>
+
+        <!-- Section 3: Paths and Connectivity -->
+        <div class="section-card">
+            <h2>3. Paths and Connectivity</h2>
+            <p>A <strong>path</strong> is a sequence of edges that begins at a vertex and travels from vertex to vertex along edges. A path is a <strong>circuit</strong> (or cycle) if it begins and ends at the same vertex.</p>
+            
+            <ul>
+                <li><strong>Connected Graph:</strong> There is a path between every pair of distinct vertices.</li>
+                <li><strong>Strongly Connected (Directed):</strong> There is a path from <span class="formula">a</span> to <span class="formula">b</span> and from <span class="formula">b</span> to <span class="formula">a</span> for all <span class="formula">a,b</span>.</li>
+            </ul>
+        </div>
+
+        <!-- Section 4: Eulerian and Hamiltonian Paths -->
+        <div class="section-card">
+            <h2>4. Eulerian and Hamiltonian Paths</h2>
+            
+            <h3>Euler Paths & Circuits (Edge Focus)</h3>
+            <p>An <strong>Euler circuit</strong> in a graph <span class="formula">G</span> is a simple circuit containing <strong>every edge</strong> of <span class="formula">G</span> exactly once.</p>
+            <ul>
+                <li><em>Theorem:</em> A connected multigraph has an Euler circuit if and only if every vertex has an <strong>even degree</strong>.</li>
+            </ul>
+            <p>An <strong>Euler path</strong> in a graph <span class="formula">G</span> is a simple path containing every edge exactly once.</p>
+            <ul>
+                <li><em>Theorem:</em> A connected multigraph has an Euler path but not an Euler circuit if and only if it has <strong>exactly two vertices of odd degree</strong>.</li>
+            </ul>
+
+            <h3>Hamilton Paths & Circuits (Vertex Focus)</h3>
+            <p>A <strong>Hamilton circuit</strong> is a circuit that passes through <strong>every vertex</strong> exactly once (except for the start/end vertex).</p>
+            <p>A <strong>Hamilton path</strong> is a path that passes through every vertex exactly once.</p>
+            <p><em>(Unlike Euler circuits, there are no simple necessary and sufficient criteria to determine if Hamilton circuits exist).</em></p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 CSE-2213 Study Guide | Built for GitHub Pages</p>
+    </footer>
+
+</body>
+</html>
