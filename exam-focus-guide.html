@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Focus Guide | CSE-2213 Study Guide</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e67e22;
+            --background-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --guaranteed: #27ae60;
+            --likely: #2980b9;
+            --possible: #8e44ad;
+            --table-border: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a252f, #2c3e50);
+            color: white;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin: 0.5rem 0 0;
+            color: #bdc3c7;
+            font-size: 1rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #ecf0f1;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid #ecf0f1;
+            padding: 5px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #ecf0f1;
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 2rem auto;
+            padding: 0 1.2rem;
+        }
+
+        /* Legend */
+        .legend {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .badge-guaranteed { background-color: var(--guaranteed); }
+        .badge-likely { background-color: var(--likely); }
+        .badge-possible { background-color: var(--possible); }
+
+        /* Section cards */
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .section-card.guaranteed { border-top: 5px solid var(--guaranteed); }
+        .section-card.likely { border-top: 5px solid var(--likely); }
+        .section-card.possible { border-top: 5px solid var(--possible); }
+
+        h2 {
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--background-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2.guaranteed { color: var(--guaranteed); }
+        h2.likely { color: var(--likely); }
+        h2.possible { color: var(--possible); }
+
+        h3 {
+            color: var(--primary-color);
+            margin-top: 22px;
+            margin-bottom: 6px;
+        }
+
+        .callout {
+            background-color: #fdf6e3;
+            border-left: 5px solid var(--secondary-color);
+            padding: 14px 16px;
+            margin: 14px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .tip {
+            background-color: #eafaf1;
+            border-left: 5px solid var(--guaranteed);
+            padding: 14px 16px;
+            margin: 14px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .formula {
+            font-family: 'Courier New', Courier, monospace;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #d35400;
+        }
+
+        ul li { margin-bottom: 5px; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18px 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 11px 14px;
+            border: 1px solid var(--table-border);
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) { background-color: #f9f9f9; }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background-color: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🎯 Exam Focus Guide</h1>
+    <p>Pattern analysis across 4 final exam papers (243, 251, 252, 253)</p>
+    <a href="index.html" class="back-link">← Back to Syllabus</a>
+</header>
+
+<div class="container">
+
+    <!-- Legend -->
+    <div class="legend">
+        <div class="legend-item"><span class="badge badge-guaranteed">GUARANTEED</span> Appeared in every paper</div>
+        <div class="legend-item"><span class="badge badge-likely">LIKELY</span> Appeared in 3 of 4 papers</div>
+        <div class="legend-item"><span class="badge badge-possible">POSSIBLE</span> Appeared in 1–2 papers</div>
+    </div>
+
+    <!-- Frequency Table -->
+    <div class="section-card">
+        <h2>📊 Question Pattern Frequency</h2>
+        <p>Based on a cross-analysis of the 4 final exam papers (243, 251, 252, 253):</p>
+        <table>
+            <tr>
+                <th>Topic / Question Type</th>
+                <th>Papers It Appeared In</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td>Binary Search Tree construction</td>
+                <td>251, 252, 253</td>
+                <td><span class="badge badge-likely">LIKELY</span></td>
+            </tr>
+            <tr>
+                <td>Tree traversal (Inorder, Preorder, Postorder)</td>
+                <td>251, 252, 253</td>
+                <td><span class="badge badge-likely">LIKELY</span></td>
+            </tr>
+            <tr>
+                <td>Bipartite graph (2-coloring algorithm)</td>
+                <td>243, 251, 252, 253</td>
+                <td><span class="badge badge-guaranteed">GUARANTEED</span></td>
+            </tr>
+            <tr>
+                <td>Adjacency Matrix (drawing from / reading)</td>
+                <td>243, 253</td>
+                <td><span class="badge badge-possible">POSSIBLE</span></td>
+            </tr>
+            <tr>
+                <td>Incidence Matrix (drawing a graph from it)</td>
+                <td>252</td>
+                <td><span class="badge badge-possible">POSSIBLE</span></td>
+            </tr>
+            <tr>
+                <td>Handshaking Theorem (verifying / finding a degree)</td>
+                <td>243, 252, 253</td>
+                <td><span class="badge badge-likely">LIKELY</span></td>
+            </tr>
+            <tr>
+                <td>Strongly connected components</td>
+                <td>243, 252</td>
+                <td><span class="badge badge-possible">POSSIBLE</span></td>
+            </tr>
+            <tr>
+                <td>Graph Isomorphism</td>
+                <td>243, 252</td>
+                <td><span class="badge badge-possible">POSSIBLE</span></td>
+            </tr>
+            <tr>
+                <td>Identifying graph type (from scenario)</td>
+                <td>243, 251, 252, 253</td>
+                <td><span class="badge badge-guaranteed">GUARANTEED</span></td>
+            </tr>
+            <tr>
+                <td>Pigeonhole Principle</td>
+                <td>243, 252, 253</td>
+                <td><span class="badge badge-likely">LIKELY</span></td>
+            </tr>
+            <tr>
+                <td>Combinations (with conditions)</td>
+                <td>243, 252, 253</td>
+                <td><span class="badge badge-likely">LIKELY</span></td>
+            </tr>
+            <tr>
+                <td>Permutations (ordered arrangements)</td>
+                <td>243, 253</td>
+                <td><span class="badge badge-possible">POSSIBLE</span></td>
+            </tr>
+            <tr>
+                <td>Mathematical Induction (proof)</td>
+                <td>251, 252</td>
+                <td><span class="badge badge-possible">POSSIBLE</span></td>
+            </tr>
+            <tr>
+                <td>Full m-ary tree (leaves / vertices calculations)</td>
+                <td>251, 252, 253</td>
+                <td><span class="badge badge-likely">LIKELY</span></td>
+            </tr>
+            <tr>
+                <td>Ancestors / descendants / height of a tree</td>
+                <td>251, 252, 253</td>
+                <td><span class="badge badge-likely">LIKELY</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- GUARANTEED -->
+    <div class="section-card guaranteed">
+        <h2 class="guaranteed"><span class="badge badge-guaranteed">GUARANTEED</span> Must-Know Concepts</h2>
+        <p>These have appeared in <strong>every single final exam paper</strong>. Do not walk in without mastering these.</p>
+
+        <h3>1. Bipartite Graph (2-Coloring Algorithm)</h3>
+        <p><strong>Definition:</strong> A graph is bipartite if its vertices can be split into two disjoint groups V1 and V2 such that every edge connects a vertex in V1 to one in V2. No edges exist within the same group.</p>
+        <div class="callout">
+            <strong>The Algorithm (always the same steps):</strong>
+            <ol>
+                <li>Pick any vertex and color it <strong>Red</strong>.</li>
+                <li>Color all its neighbors <strong>Blue</strong>.</li>
+                <li>Color all their neighbors <strong>Red</strong>, and so on.</li>
+                <li>If you ever find two adjacent vertices of the <strong>same color</strong>, the graph is <strong>NOT bipartite</strong>.</li>
+                <li>If the entire graph is colored without conflict, it <strong>IS bipartite</strong>. State the two sets.</li>
+            </ol>
+        </div>
+
+        <h3>2. Identifying Graph Type from a Scenario</h3>
+        <p>Every paper has a word problem where you must state the correct graph type and justify it.</p>
+        <div class="tip">
+            <strong>The 3 Key Questions to Ask:</strong><br>
+            1. <strong>Directed or Undirected?</strong> → Is the relationship one-way (e.g., "calls", "beats") or mutual (e.g., "knows", "connected to")?<br>
+            2. <strong>Loops?</strong> → Can a vertex connect to itself (e.g., a drone returning to its base)?<br>
+            3. <strong>Multiple Edges?</strong> → Can two vertices be connected by more than one edge (e.g., multiple train lines between two stations)?
+        </div>
+        <table>
+            <tr><th>Scenario Keyword</th><th>Graph Type</th></tr>
+            <tr><td>Mutual friendship, connected (no loops, no multi-edges)</td><td>Simple Graph</td></tr>
+            <tr><td>Multiple train lines between stations (no loops)</td><td>Multigraph</td></tr>
+            <tr><td>Multiple routes + can return to same station (loops)</td><td>Pseudograph</td></tr>
+            <tr><td>One-way calls, beats (directed, no loops, no multi)</td><td>Simple Directed Graph</td></tr>
+            <tr><td>One-way + multi-edges + loops (drone delivery, etc.)</td><td>Directed Multigraph</td></tr>
+            <tr><td>Chess "who beat whom" tournament</td><td>Tournament Graph (Directed)</td></tr>
+            <tr><td>Every vertex has same degree = n-1</td><td>Complete Graph K<sub>n</sub></td></tr>
+        </table>
+    </div>
+
+    <!-- LIKELY -->
+    <div class="section-card likely">
+        <h2 class="likely"><span class="badge badge-likely">LIKELY</span> High-Probability Topics</h2>
+
+        <h3>3. Binary Search Tree (BST) Construction</h3>
+        <p><strong>Rule:</strong> Left child &lt; parent &lt; right child (use dictionary order for words).</p>
+        <div class="callout">
+            <strong>Step-by-step:</strong> Insert the first word as the root. For each subsequent word, start at the root and go LEFT if smaller, RIGHT if larger, until you find an empty spot.
+        </div>
+        <p><strong>BST Traversal sequences (know all 3):</strong></p>
+        <ul>
+            <li><strong>Pre-order</strong> → Root, Left, Right</li>
+            <li><strong>In-order</strong> → Left, Root, Right &nbsp; <em>(produces a sorted sequence in a valid BST)</em></li>
+            <li><strong>Post-order</strong> → Left, Right, Root</li>
+        </ul>
+
+        <h3>4. Full m-ary Tree Formulas</h3>
+        <div class="callout">
+            Given <span class="formula">m</span> (branching factor) and <span class="formula">i</span> (internal vertices) or total vertices <span class="formula">n</span>:
+            <ul>
+                <li><strong>Total vertices:</strong> <span class="formula">n = m&middot;i + 1</span></li>
+                <li><strong>Number of leaves:</strong> <span class="formula">l = (m-1)&middot;i + 1</span></li>
+                <li><strong>Max leaves at height h:</strong> <span class="formula">L<sub>max</sub> = m<sup>h</sup></span></li>
+                <li><strong>Min height for l leaves:</strong> <span class="formula">h = &lceil;log<sub>m</sub>(l)&rceil;</span></li>
+            </ul>
+        </div>
+
+        <h3>5. Handshaking Theorem</h3>
+        <div class="callout">
+            <strong>Undirected:</strong> <span class="formula">&sum; deg(v) = 2|E|</span><br>
+            <strong>Directed:</strong> <span class="formula">&sum; deg<sup>-</sup>(v) = &sum; deg<sup>+</sup>(v) = |E|</span>
+        </div>
+        <p><strong>Common question formats:</strong></p>
+        <ul>
+            <li><em>"Find the missing degree d given 9 other degrees and total edges."</em> → Sum all given degrees, subtract from 2×|E|.</li>
+            <li><em>"Does this graph follow the Handshaking Theorem?"</em> → Sum all degrees and check if divisible by 2.</li>
+            <li><em>"Find the number of edges in K<sub>n</sub> (complete graph)."</em> → Each vertex has degree n-1, so 2|E| = n(n-1), thus |E| = n(n-1)/2.</li>
+        </ul>
+
+        <h3>6. Pigeonhole Principle</h3>
+        <div class="callout">
+            To guarantee at least <span class="formula">k</span> objects in one box (with <span class="formula">n</span> boxes), you need:
+            <span class="formula">N = n(k-1) + 1</span> objects.
+        </div>
+        <p><strong>Common question formats:</strong></p>
+        <ul>
+            <li><em>"How many students to guarantee 9 from the same batch (5 batches)?"</em> → 5(9-1)+1 = <strong>41</strong></li>
+            <li><em>"How many people to guarantee 4 pick the same genre (10 genres)?"</em> → 10(4-1)+1 = <strong>31</strong></li>
+            <li><em>"Min books so one shelf has ≥15 (10 shelves)?"</em> → 10(15-1)+1 = <strong>141</strong></li>
+        </ul>
+
+        <h3>7. Combinations with Conditions ("at least" / "at most")</h3>
+        <div class="callout">
+            <strong>Formula:</strong> <span class="formula">C(n, r) = n! / (r! &times; (n-r)!)</span><br>
+            <strong>"At least k of type A"</strong> → Sum all valid cases: k of A, k+1 of A, etc.<br>
+            <strong>"At least 1 of type A"</strong> → Total - (combinations with NONE of type A)
+        </div>
+    </div>
+
+    <!-- POSSIBLE -->
+    <div class="section-card possible">
+        <h2 class="possible"><span class="badge badge-possible">POSSIBLE</span> Know These Definitions Cold</h2>
+
+        <h3>8. Tree Attributes</h3>
+        <ul>
+            <li><strong>Height/Depth:</strong> Number of edges on the longest path from root to any leaf.</li>
+            <li><strong>Level of a node:</strong> Number of edges from the root to that node.</li>
+            <li><strong>Ancestor of node X:</strong> All nodes on the path from the root to X (not including X).</li>
+            <li><strong>Descendants of node X:</strong> All nodes reachable from X going downward (not including X).</li>
+            <li><strong>Leaf:</strong> A node with no children.</li>
+            <li><strong>Internal vertex:</strong> A node with at least one child.</li>
+        </ul>
+
+        <h3>9. Graph Representations</h3>
+        <ul>
+            <li><strong>Adjacency Matrix:</strong> Square matrix. Row = source vertex, Column = destination. Cell = 1 if edge exists.</li>
+            <li><strong>Incidence Matrix:</strong> Rows = vertices, Columns = edges. Cell = 1 if the vertex is an endpoint of that edge.</li>
+        </ul>
+
+        <h3>10. Strongly Connected vs Weakly Connected</h3>
+        <ul>
+            <li><strong>Strongly Connected:</strong> There is a directed path from EVERY vertex to EVERY other vertex.</li>
+            <li><strong>Weakly Connected:</strong> Ignoring edge direction, the underlying graph is connected.</li>
+            <li><strong>Strongly Connected Component (SCC):</strong> A maximal subgraph that is strongly connected.</li>
+        </ul>
+
+        <h3>11. Graph Isomorphism</h3>
+        <p>Two graphs are isomorphic if one can be redrawn to look identical to the other (relabeling vertices).</p>
+        <div class="tip">
+            <strong>To prove NOT isomorphic, check these invariants in order:</strong>
+            <ol>
+                <li>Number of vertices must be equal.</li>
+                <li>Number of edges must be equal.</li>
+                <li>Degree sequence (sorted list of all vertex degrees) must be identical.</li>
+            </ol>
+            If any one of these fails, they are NOT isomorphic.
+        </div>
+
+        <h3>12. Mathematical Induction (Proof Template)</h3>
+        <div class="callout">
+            <ol>
+                <li><strong>Basis Step:</strong> Prove the formula holds for n=1 (show LHS = RHS).</li>
+                <li><strong>Inductive Hypothesis:</strong> Assume the formula holds for n=k.</li>
+                <li><strong>Inductive Step:</strong> Show it holds for n=k+1 by substituting the hypothesis and simplifying to match the formula for k+1.</li>
+                <li><strong>Conclusion:</strong> "By the Principle of Mathematical Induction, the statement is true for all positive integers n."</li>
+            </ol>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>&copy; 2024 CSE-2213 Study Guide | Built for GitHub Pages</p>
+</footer>
+
+</body>
+</html>
