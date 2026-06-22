@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trees & Applications | CSE-2213 Study Guide</title>
+    <title>Trees | CSE-2213 Study Guide</title>
     <style>
         /* CSS Styling - Consistent with Index */
         :root {
@@ -104,35 +104,6 @@
             color: #d35400;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background-color: white;
-            text-align: left;
-        }
-
-        th, td {
-            padding: 12px;
-            border: 1px solid var(--table-border);
-        }
-
-        th {
-            background-color: var(--primary-color);
-            color: white;
-            font-size: 1.1rem;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        .grid-2-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
         footer {
             text-align: center;
             padding: 2rem;
@@ -141,93 +112,110 @@
             color: white;
         }
 
-        @media (max-width: 768px) {
-            .grid-2-col { grid-template-columns: 1fr; }
-        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Trees & Applications</h1>
-        <p>Final Syllabus • Classes 21 - 23</p>
+        <h1>Trees</h1>
+        <p>Final Syllabus • Classes 21 - 22</p>
         <a href="index.html" class="back-link">← Back to Syllabus</a>
     </header>
 
     <div class="container">
 
-        <!-- Section 1: Intro to Trees -->
+        <!-- Section 1: Introduction -->
         <div class="section-card">
-            <h2>1. Introduction to Trees</h2>
-            <p>A <strong>tree</strong> is a connected undirected graph with no simple circuits.</p>
+            <h2>1. What is a Tree?</h2>
+            <p>A <strong>tree</strong> is a connected undirected graph with no simple circuits. It cannot contain multiple edges or loops.</p>
+            <p>A <strong>forest</strong> is a collection of one or more disjoint trees where each tree is independent of the others, and there are no edges connecting the trees.</p>
+            
+            <h3>Rooted Trees & Terminology</h3>
             <ul>
-                <li>Because a tree cannot have a simple circuit, a tree cannot contain multiple edges or loops. Therefore, any tree must be a <strong>simple graph</strong>.</li>
+                <li><strong>Rooted Tree:</strong> A tree in which one vertex is designated as the root, and every edge is directed away from the root.</li>
+                <li><strong>Root:</strong> The starting point, has no parent.</li>
+                <li><strong>Leaf:</strong> A node with no children (the end of the branch).</li>
+                <li><strong>Internal Vertices:</strong> Vertices that have children. The root is an internal vertex unless it's the only node in the tree.</li>
+                <li><strong>Ancestors/Descendants:</strong> Nodes above/below a given node in the path to the root/leaves.</li>
+                <li><strong>Level:</strong> How far a node is from the root (number of edges). Root is at level 0.</li>
+                <li><strong>Height/Depth:</strong> The number of edges on the longest path from the root to a leaf (the maximum level).</li>
             </ul>
-
-            <div class="callout warning">
-                <strong>Theorem:</strong><br>
-                An undirected graph is a tree if and only if there is a <strong>unique simple path</strong> between any two of its vertices.
-            </div>
-            
-            <p><strong>Forest:</strong> A graph that has no simple circuits but is not necessarily connected. Each of its connected components is a tree.</p>
         </div>
 
-        <!-- Section 2: Rooted Trees -->
+        <!-- Section 2: Types of Trees -->
         <div class="section-card">
-            <h2>2. Rooted Trees</h2>
-            <p>A rooted tree is a tree in which one vertex has been designated as the <strong>root</strong> and every edge is directed away from the root.</p>
+            <h2>2. m-ary and Binary Trees</h2>
             
-            <h3>Terminology</h3>
-            <div class="grid-2-col">
-                <div>
-                    <ul>
-                        <li><strong>Parent:</strong> The vertex <span class="formula">u</span> such that there is a directed edge from <span class="formula">u</span> to <span class="formula">v</span>.</li>
-                        <li><strong>Child:</strong> If <span class="formula">u</span> is the parent of <span class="formula">v</span>, then <span class="formula">v</span> is the child of <span class="formula">u</span>.</li>
-                        <li><strong>Siblings:</strong> Vertices with the same parent.</li>
-                    </ul>
-                </div>
-                <div>
-                    <ul>
-                        <li><strong>Leaf:</strong> A vertex with no children (degree = 1).</li>
-                        <li><strong>Internal Vertex:</strong> A vertex that has at least one child.</li>
-                        <li><strong>Ancestors & Descendants:</strong> Vertices on the path from the root to <span class="formula">v</span> / vertices below <span class="formula">v</span>.</li>
-                    </ul>
-                </div>
+            <p>An <strong>m-ary tree</strong> is a rooted tree where every internal vertex has no more than <span class="formula">m</span> children.</p>
+            <p>It is called a <strong>full m-ary tree</strong> if every internal vertex has EXACTLY <span class="formula">m</span> children.</p>
+
+            <h3>Binary Search Tree (BST)</h3>
+            <p>An <span class="formula">m</span>-ary tree where <span class="formula">m = 2</span> is a <strong>binary tree</strong>. A <strong>Binary Search Tree (BST)</strong> is a special binary tree that follows a specific ordering rule:</p>
+            <ul>
+                <li>The <strong>left subtree</strong> contains values less than the node's value.</li>
+                <li>The <strong>right subtree</strong> contains values greater than the node's value.</li>
+            </ul>
+            <p><em>Note:</em> For strings, use dictionary order (e.g., center < centre < dictator).</p>
+
+            <div class="callout">
+                <strong>Balanced Tree:</strong><br>
+                A tree is balanced if all of its leaves are at level <span class="formula">h</span> or <span class="formula">h - 1</span> (where <span class="formula">h</span> is the height of the tree).
             </div>
         </div>
 
-        <!-- Section 3: Properties of Trees -->
+        <!-- Section 3: Tree Theorems -->
         <div class="section-card">
-            <h2>3. Properties of Trees</h2>
-            
-            <p>An <strong>m-ary tree</strong> is a rooted tree where every internal vertex has no more than <span class="formula">m</span> children. It is a <strong>full m-ary tree</strong> if every internal vertex has exactly <span class="formula">m</span> children. An m-ary tree with <span class="formula">m = 2</span> is called a <strong>binary tree</strong>.</p>
+            <h2>3. Important Tree Theorems</h2>
             
             <div class="callout">
-                <strong>Important Theorems:</strong>
-                <ol>
-                    <li>A tree with <span class="formula">n</span> vertices has exactly <strong><span class="formula">n - 1</span> edges</strong>.</li>
-                    <li>A full m-ary tree with <span class="formula">i</span> internal vertices contains <strong><span class="formula">n = m*i + 1</span></strong> vertices.</li>
-                    <li>There are at most <strong><span class="formula">m<sup>h</sup></span></strong> leaves in an m-ary tree of height <span class="formula">h</span>.</li>
-                </ol>
+                <strong>Theorem 2:</strong> A tree with <span class="formula">n</span> vertices has <span class="formula">n - 1</span> edges.
+            </div>
+            
+            <div class="callout">
+                <strong>Theorem 3:</strong> A full <span class="formula">m</span>-ary tree with <span class="formula">i</span> internal vertices contains a total of <span class="formula">n = mi + 1</span> vertices.
+            </div>
+
+            <div class="callout">
+                <strong>Theorem 4:</strong> A full <span class="formula">m</span>-ary tree with <span class="formula">i</span> internal vertices contains a total of <span class="formula">l = (m - 1)i + 1</span> leaves.
+            </div>
+
+            <div class="callout">
+                <strong>Theorem 5:</strong> An <span class="formula">m</span>-ary tree of height <span class="formula">h</span> has at most <span class="formula">m<sup>h</sup></span> leaves. (<span class="formula">L<sub>max</sub> = m<sup>h</sup></span>).
+            </div>
+
+            <div class="warning">
+                <strong>Example Problem:</strong> Calculate the number of vertices in a full 5-ary tree with 35 internal vertices. Find the number of leaves.<br>
+                <em>Solution:</em> <span class="formula">m = 5, i = 35</span><br>
+                Vertices <span class="formula">n = mi + 1 = 5(35) + 1 = 176</span><br>
+                Leaves <span class="formula">l = (m-1)i + 1 = (4)(35) + 1 = 141</span>
             </div>
         </div>
 
-        <!-- Section 4: Tree Traversal -->
+        <!-- Section 4: Tree Traversals -->
         <div class="section-card">
-            <h2>4. Tree Traversal</h2>
-            <p>Tree traversal algorithms provide a process for systematically visiting every vertex of an ordered rooted tree.</p>
+            <h2>4. Tree Traversals & Expressions</h2>
             
-            <h3>Universal Address System & Traversals</h3>
+            <p>Tree traversal refers to visiting all nodes in a specific order. The three standard orders are:</p>
             <ul>
-                <li><strong>Preorder Traversal:</strong> Visit the root, traverse the left subtree, traverse the right subtree. (Root, Left, Right)</li>
-                <li><strong>Inorder Traversal:</strong> Traverse the left subtree, visit the root, traverse the right subtree. (Left, Root, Right)</li>
-                <li><strong>Postorder Traversal:</strong> Traverse the left subtree, traverse the right subtree, visit the root. (Left, Right, Root)</li>
+                <li><strong>Pre-order:</strong> Root, Left, Right</li>
+                <li><strong>In-order:</strong> Left, Root, Right</li>
+                <li><strong>Post-order:</strong> Left, Right, Root</li>
             </ul>
 
-            <div class="warning">
-                <strong>Applications:</strong><br>
-                Traversals are used heavily in computer science for parsing arithmetic expressions (Prefix, Infix, Postfix notations).
+            <div class="callout">
+                <strong>Inorder in BST:</strong><br>
+                An inorder traversal of a Binary Search Tree ALWAYS produces a <strong>sorted sequence</strong> of the data. This acts as a correctness test!
             </div>
+
+            <h3>Ordered Rooted Tree of Expressions</h3>
+            <p>Also known as a Binary Expression Tree. It represents mathematical operations where internal nodes are operators (+, -, *, /) and leaves are operands (numbers, variables).</p>
+            
+            <p>Traversing an expression tree yields different notations:</p>
+            <ul>
+                <li><strong>In-order:</strong> Gives <strong>Infix</strong> notation (e.g., <span class="formula">x + y * 2</span>).</li>
+                <li><strong>Pre-order:</strong> Gives <strong>Prefix</strong> notation (e.g., <span class="formula">+ x * y 2</span>).</li>
+                <li><strong>Post-order:</strong> Gives <strong>Postfix</strong> notation (e.g., <span class="formula">x y 2 * +</span>).</li>
+            </ul>
         </div>
 
     </div>

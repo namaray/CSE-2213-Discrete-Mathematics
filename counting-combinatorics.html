@@ -78,6 +78,8 @@
         h3 {
             color: var(--primary-color);
             margin-top: 25px;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 5px;
         }
 
         .callout {
@@ -104,6 +106,14 @@
             color: #d35400;
         }
 
+        .example-block {
+            background: #fdfcfb;
+            border: 1px solid #e6e6e6;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -127,12 +137,6 @@
             background-color: #f9f9f9;
         }
 
-        .grid-2-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
         footer {
             text-align: center;
             padding: 2rem;
@@ -141,9 +145,6 @@
             color: white;
         }
 
-        @media (max-width: 768px) {
-            .grid-2-col { grid-template-columns: 1fr; }
-        }
     </style>
 </head>
 <body>
@@ -158,67 +159,131 @@
 
         <!-- Section 1: Basics of Counting -->
         <div class="section-card">
-            <h2>1. Basics of Counting</h2>
+            <h2>1. Product Rule & Sum Rule</h2>
             
-            <div class="grid-2-col">
-                <div>
-                    <h3>The Product Rule</h3>
-                    <p>If a procedure can be broken down into a sequence of two tasks, where the first task can be done in <span class="formula">n1</span> ways and the second task can be done in <span class="formula">n2</span> ways, then there are <span class="formula">n1 &times; n2</span> ways to do the procedure.</p>
-                </div>
-                <div>
-                    <h3>The Sum Rule</h3>
-                    <p>If a task can be done either in one of <span class="formula">n1</span> ways or in one of <span class="formula">n2</span> ways (where the sets of ways are disjoint), then there are <span class="formula">n1 + n2</span> ways to do the task.</p>
-                </div>
+            <h3>The Product Rule</h3>
+            <p>If a procedure can be broken down into a sequence of two tasks, where the first task can be done in <span class="formula">n<sub>1</sub></span> ways and the second task can be done in <span class="formula">n<sub>2</sub></span> ways, then there are <span class="formula">n<sub>1</sub> &times; n<sub>2</sub></span> ways to do the procedure.</p>
+            
+            <div class="example-block">
+                <strong>Example 1: Getting Dressed</strong><br>
+                Choose 1 shirt (from 3), 1 pants (from 2), 1 shoes (from 2).<br>
+                <em>Total:</em> 3 &times; 2 &times; 2 = 12 outfits.
+            </div>
+            <div class="example-block">
+                <strong>Example 2: Password Creation</strong><br>
+                3 characters: 1 uppercase letter, 1 digit, 1 special symbol (from 5).<br>
+                <em>Total:</em> 26 &times; 10 &times; 5 = 1300 passwords.
+            </div>
+            <div class="example-block">
+                <strong>Example 3: Assigning Offices</strong><br>
+                Assigning 12 offices to Sonia and Patel.<br>
+                <em>Total:</em> 12 choices for Sonia &times; 11 choices for Patel = 132 ways.
+            </div>
+            <div class="example-block">
+                <strong>Example 4: Bit Strings</strong><br>
+                How many bit strings of length 7?<br>
+                <em>Total:</em> 2 &times; 2 &times; 2 &times; 2 &times; 2 &times; 2 &times; 2 = 2<sup>7</sup> = 128.
+            </div>
+            <div class="example-block">
+                <strong>Example 5: License Plates</strong><br>
+                3 letters followed by 3 digits.<br>
+                <em>Total:</em> 26 &times; 26 &times; 26 &times; 10 &times; 10 &times; 10 = 17,576,000.
             </div>
 
-            <div class="callout warning">
-                <strong>Principle of Inclusion-Exclusion (Subtraction Rule):</strong><br>
-                If the sets of ways to do tasks are NOT disjoint, you must subtract the overlap.<br>
-                <span class="formula">|A &cup; B| = |A| + |B| - |A &cap; B|</span>
+            <h3>The Sum Rule</h3>
+            <p>If a task can be done either in one of <span class="formula">n<sub>1</sub></span> ways or in one of <span class="formula">n<sub>2</sub></span> ways (where the options are mutually exclusive), then there are <span class="formula">n<sub>1</sub> + n<sub>2</sub></span> ways to do the task.</p>
+            
+            <div class="example-block">
+                <strong>Example 6: Committee Representative</strong><br>
+                Choose either a math faculty (37) or a math major (83).<br>
+                <em>Total:</em> 37 + 83 = 120 choices.
+            </div>
+            <div class="example-block">
+                <strong>Example 7: UIU FYDP Projects</strong><br>
+                Dr. Sarwar offers 4, Dr. Farid offers 5, Dr. Shatabda offers 7.<br>
+                <em>Total:</em> 4 + 5 + 7 = 16 projects.
+            </div>
+            <div class="example-block">
+                <strong>Example 8: Dhaka to Barishal</strong><br>
+                Direct Bus (8), Broken Bus route (5 &times; 7 = 35), Launch (8).<br>
+                <em>Total:</em> 8 + 35 + 8 = 51 ways.
             </div>
         </div>
 
         <!-- Section 2: The Pigeonhole Principle -->
         <div class="section-card">
             <h2>2. The Pigeonhole Principle</h2>
-            <p>If <span class="formula">k</span> is a positive integer and <span class="formula">k + 1</span> or more objects are placed into <span class="formula">k</span> boxes, then there is at least one box containing two or more of the objects.</p>
+            <p>If <span class="formula">N</span> objects are placed into <span class="formula">k</span> boxes, then there is at least one box containing at least <span class="formula">&lceil;N/k&rceil;</span> objects.</p>
             
-            <div class="callout">
-                <strong>Generalized Pigeonhole Principle:</strong><br>
-                If <span class="formula">N</span> objects are placed into <span class="formula">k</span> boxes, then there is at least one box containing at least <span class="formula">&lceil;N/k&rceil;</span> objects.
+            <div class="example-block">
+                <strong>Example 9: Birth Months</strong><br>
+                Among 100 people, how many are guaranteed to share a birth month?<br>
+                <em>Ans:</em> &lceil;100 / 12&rceil; = &lceil;8.33&rceil; = 9 people.
+            </div>
+            <div class="example-block">
+                <strong>Example 10: Exam Scores</strong><br>
+                How many students must be in a class to guarantee 2 students get the same score (0 to 100)?<br>
+                <em>Ans:</em> Possible scores = 101. We need 101 + 1 = 102 students.
+            </div>
+            <div class="example-block">
+                <strong>Example 11: Drawing Socks in the Dark</strong><br>
+                Drawer has 12 brown and 12 black socks.<br>
+                - To guarantee a matching pair: 3 socks.<br>
+                - To guarantee two black socks: Pick all 12 brown + 2 black = 14 socks.
+            </div>
+            <div class="example-block">
+                <strong>Example 12: Mobile Numbers in Bangladesh</strong><br>
+                Format `01S-XXXXXXXX` (8 digits). 10<sup>8</sup> = 100 million unique numbers per operator.<br>
+                If 180 million people need phones, how many operators (S) are needed?<br>
+                <em>Ans:</em> &lceil;180,000,000 / 100,000,000&rceil; = &lceil;1.8&rceil; = 2 operators.
             </div>
         </div>
 
-        <!-- Section 3: Permutations -->
+        <!-- Section 3: Permutations & Combinations -->
         <div class="section-card">
-            <h2>3. Permutations (Order Matters)</h2>
-            <p>A permutation of a set of distinct objects is an <strong>ordered</strong> arrangement of these objects.</p>
+            <h2>3. Permutations & Combinations</h2>
             
-            <h3>Formula for r-Permutations</h3>
-            <p>The number of <span class="formula">r</span>-permutations of a set with <span class="formula">n</span> distinct elements is denoted by <span class="formula">P(n, r)</span>.</p>
+            <h3>Permutations (Order Matters)</h3>
             <p><span class="formula">P(n, r) = n! / (n - r)!</span></p>
 
-            <div class="callout">
-                <strong>Example:</strong> How many ways can 3 students be selected for 1st, 2nd, and 3rd prize out of 10 students?<br>
-                <span class="formula">P(10, 3) = 10! / (10 - 3)! = 10 &times; 9 &times; 8 = 720</span>
+            <div class="example-block">
+                <strong>Example 13: Arranging Letters</strong><br>
+                How many permutations of ABCDEFGH contain the string "ABC"?<br>
+                <em>Sol:</em> Treat "ABC" as 1 block. Total items = 6 [ABC, D, E, F, G, H]. P(6,6) = 6! = 720.
+                <br><br>
+                How many contain A, B, C together in any order?<br>
+                <em>Sol:</em> 6! (for the blocks) &times; 3! (internal arrangement of ABC) = 720 &times; 6 = 4320.
+                <br><br>
+                How many do NOT contain A, B, C together?<br>
+                <em>Sol:</em> Total permutations (8!) - Permutations with ABC together (4320) = 40320 - 4320 = 36000.
+                <br><br>
+                How many have A, B, C completely separated?<br>
+                <em>Sol:</em> Arrange the 5 other letters (5! = 120). This creates 6 gaps. Place A, B, C in the 6 gaps: P(6,3) = 120. Total = 120 &times; 120 = 14400.
             </div>
-        </div>
 
-        <!-- Section 4: Combinations -->
-        <div class="section-card">
-            <h2>4. Combinations (Order Doesn't Matter)</h2>
-            <p>An <span class="formula">r</span>-combination of elements of a set is an <strong>unordered</strong> selection of <span class="formula">r</span> elements from the set.</p>
-            
-            <h3>Formula for r-Combinations</h3>
-            <p>The number of <span class="formula">r</span>-combinations of a set with <span class="formula">n</span> distinct elements is denoted by <span class="formula">C(n, r)</span> or <span class="formula">(n choose r)</span>.</p>
+            <div class="example-block">
+                <strong>Example 14: Rearranging SILHOUETTE</strong><br>
+                10 letters (T=2, E=2).<br>
+                - No special condition: 10! / (2! &times; 2!) = 907,200.<br>
+                - All vowels together (I,O,U,E,E): Treat as 1 block. 6 blocks total. (6! / 2!) &times; (5! / 2!) = 360 &times; 60 = 21,600.
+            </div>
+
+            <h3>Combinations (Order Doesn't Matter)</h3>
             <p><span class="formula">C(n, r) = n! / (r! &times; (n - r)!)</span></p>
 
-            <div class="callout">
-                <strong>Example:</strong> How many ways can a committee of 3 students be chosen from a group of 10?<br>
-                <span class="formula">C(10, 3) = 10! / (3! &times; 7!) = (10 &times; 9 &times; 8) / (3 &times; 2 &times; 1) = 120</span>
+            <div class="example-block">
+                <strong>Example 15: Forming a Committee</strong><br>
+                9 Math faculty, 11 CS faculty. Form a committee of 3 Math and 4 CS.<br>
+                <em>Sol:</em> C(9, 3) &times; C(11, 4) = 84 &times; 330 = 27,720 ways.
             </div>
-            
-            <p><strong>Note:</strong> <span class="formula">C(n, r) = C(n, n-r)</span>. Choosing <span class="formula">r</span> elements to include is the same as choosing <span class="formula">n-r</span> elements to leave out.</p>
+            <div class="example-block">
+                <strong>Example 16: Faculty Selection with Restriction</strong><br>
+                7 women, 9 men. Select a committee of 5 with at least one woman.<br>
+                <em>Sol:</em> Total unrestricted committees = C(16, 5) = 4368. <br>
+                Committees with NO women (only men) = C(9, 5) = 126.<br>
+                At least one woman = 4368 - 126 = 4242 ways.
+            </div>
+
         </div>
 
     </div>

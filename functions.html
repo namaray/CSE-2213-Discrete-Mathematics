@@ -199,7 +199,19 @@
                 <p>A bijection (or bijective function) is a function that is <strong>both one-to-one and onto</strong>. It establishes a perfect "one-to-one correspondence" between elements of its domain and elements of its codomain.</p>
             </div>
             
-            <p><strong>Note:</strong> A function can change its properties with the change of domains. For example, <span class="formula">f(x) = x<sup>2</sup></span> is not one-to-one from <strong>&#8477; &rarr; &#8477;</strong>, but it is one-to-one from <strong>&#8477;<sup>+</sup> &rarr; &#8477;</strong>.</p>
+            <h3>Detecting One-to-One and Onto algebraically</h3>
+            
+            <p><strong>Example 1: <span class="formula">f(x) = x<sup>2</sup></span> where <span class="formula">f : &integers; &rarr; &integers;</span></strong></p>
+            <ul>
+                <li><strong>One-to-one?</strong> No. <span class="formula">f(2) = 4</span> and <span class="formula">f(-2) = 4</span>. Since <span class="formula">2 &ne; -2</span>, different inputs yield the same output.</li>
+                <li><strong>Onto?</strong> No. The codomain is <span class="formula">&integers;</span>, but <span class="formula">f(x)</span> only produces non-negative integers. There is no integer <span class="formula">x</span> such that <span class="formula">x<sup>2</sup> = -1</span>.</li>
+            </ul>
+
+            <p><strong>Example 2: <span class="formula">f(x) = x + 1</span> where <span class="formula">f : &reals; &rarr; &reals;</span></strong></p>
+            <ul>
+                <li><strong>One-to-one?</strong> Yes. If <span class="formula">f(x1) = f(x2)</span>, then <span class="formula">x1 + 1 = x2 + 1</span> &rArr; <span class="formula">x1 = x2</span>.</li>
+                <li><strong>Onto?</strong> Yes. Let <span class="formula">y &isin; &reals;</span> be any arbitrary element in the codomain. Then <span class="formula">x = y - 1</span> is a real number, and <span class="formula">f(x) = (y - 1) + 1 = y</span>.</li>
+            </ul>
         </div>
 
         <!-- Section 3: Operations -->
@@ -212,6 +224,7 @@
                 <li><strong>Addition:</strong> <span class="formula">(f + g)(x) = f(x) + g(x)</span></li>
                 <li><strong>Multiplication:</strong> <span class="formula">(fg)(x) = f(x)g(x)</span></li>
             </ul>
+            <p><em>Example:</em> If <span class="formula">f(x) = x<sup>2</sup></span> and <span class="formula">g(x) = x - x<sup>2</sup></span>, then <span class="formula">(f + g)(x) = x</span> and <span class="formula">(fg)(x) = x<sup>3</sup> - x<sup>4</sup></span>.</p>
 
             <h3>Inverse of a Function</h3>
             <p>The inverse of a function exists <strong>if and only if the function is a bijection</strong> (called an invertible function).</p>
@@ -227,12 +240,20 @@
                 </ol>
             </div>
             
-            <p><em>Example:</em> Find the inverse of <span class="formula">f(x) = x + 1</span>.</p>
+            <p><em>Example 1:</em> Find the inverse of <span class="formula">f(x) = e<sup>x</sup></span>.</p>
             <ul>
-                <li><span class="formula">y = x + 1</span></li>
-                <li><span class="formula">x = y + 1</span> (Interchange)</li>
-                <li><span class="formula">y = x - 1</span></li>
-                <li><span class="formula">f<sup>-1</sup>(x) = x - 1</span></li>
+                <li><span class="formula">y = e<sup>x</sup></span></li>
+                <li><span class="formula">x = e<sup>y</sup></span> (Interchange)</li>
+                <li><span class="formula">ln(x) = ln(e<sup>y</sup>) &rArr; ln(x) = y</span></li>
+                <li><span class="formula">f<sup>-1</sup>(x) = ln(x)</span></li>
+            </ul>
+
+            <p><em>Example 2:</em> Find the inverse of <span class="formula">f(x) = (2x + 1)/(x - 1)</span>.</p>
+            <ul>
+                <li><span class="formula">y = (2x + 1)/(x - 1)</span></li>
+                <li><span class="formula">x = (2y + 1)/(y - 1)</span> (Interchange)</li>
+                <li><span class="formula">x(y - 1) = 2y + 1 &rArr; xy - x = 2y + 1 &rArr; y(x - 2) = x + 1</span></li>
+                <li><span class="formula">f<sup>-1</sup>(x) = (x + 1)/(x - 2)</span></li>
             </ul>
         </div>
 

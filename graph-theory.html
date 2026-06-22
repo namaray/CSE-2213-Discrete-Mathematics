@@ -141,9 +141,6 @@
             color: white;
         }
 
-        @media (max-width: 768px) {
-            .grid-2-col { grid-template-columns: 1fr; }
-        }
     </style>
 </head>
 <body>
@@ -159,19 +156,39 @@
         <!-- Section 1: Intro to Graphs -->
         <div class="section-card">
             <h2>1. Introduction to Graphs</h2>
-            <p>A graph <span class="formula">G = (V, E)</span> consists of <span class="formula">V</span>, a nonempty set of vertices (or nodes) and <span class="formula">E</span>, a set of edges. Each edge has either one or two vertices associated with it, called its endpoints.</p>
+            <p>A graph <span class="formula">G = (V, E)</span> consists of <span class="formula">V</span>, a nonempty set of vertices (or nodes) and <span class="formula">E</span>, a set of edges. It shows connections between things.</p>
             
             <h3>Types of Graphs</h3>
+            <table>
+                <tr>
+                    <th>Type</th>
+                    <th>Edges</th>
+                    <th>Multiple Edges?</th>
+                    <th>Loops Allowed?</th>
+                </tr>
+                <tr><td>Simple Graph</td><td>Undirected</td><td>No</td><td>No</td></tr>
+                <tr><td>Multigraph</td><td>Undirected</td><td>Yes</td><td>No</td></tr>
+                <tr><td>Pseudograph</td><td>Undirected</td><td>Yes</td><td>Yes</td></tr>
+                <tr><td>Simple Directed Graph</td><td>Directed</td><td>No</td><td>No</td></tr>
+                <tr><td>Directed Multigraph</td><td>Directed</td><td>Yes</td><td>Yes</td></tr>
+                <tr><td>Mixed Graph</td><td>Both</td><td>Yes</td><td>Yes</td></tr>
+            </table>
+
+            <h3>Graph Examples</h3>
             <ul>
-                <li><strong>Simple Graph:</strong> Undirected edges, no multiple edges between the same two vertices, no loops (edges from a vertex to itself).</li>
-                <li><strong>Multigraph:</strong> Undirected edges, multiple edges allowed between the same vertices.</li>
-                <li><strong>Directed Graph (Digraph):</strong> Edges have direction (indicated by arrows).</li>
+                <li><strong>Acquaintanceship Graph:</strong> Undirected (if Alice knows Bob, Bob knows Alice).</li>
+                <li><strong>Call Graph:</strong> Directed (Alice calls Bob).</li>
+                <li><strong>Hollywood Graph:</strong> Simple undirected graph (Actors working in a movie together).</li>
             </ul>
 
             <div class="callout">
-                <strong>Handshaking Theorem:</strong><br>
+                <strong>Handshaking Theorem (Undirected):</strong><br>
                 For any undirected graph with <span class="formula">e</span> edges, the sum of the degrees of the vertices is <span class="formula">2e</span>.<br>
                 <span class="formula">&sum; deg(v) = 2e</span>
+            </div>
+            <div class="callout">
+                <strong>Handshaking Theorem (Directed):</strong><br>
+                <span class="formula">&sum; deg<sup>-</sup>(v) = &sum; deg<sup>+</sup>(v) = |E|</span>
             </div>
         </div>
 
@@ -182,49 +199,66 @@
             <div class="grid-2-col">
                 <div>
                     <h3>Complete Graphs (<span class="formula">K<sub>n</sub></span>)</h3>
-                    <p>A simple graph that contains exactly one edge between each pair of distinct vertices. It has <span class="formula">n(n-1)/2</span> edges.</p>
+                    <p>Every pair of distinct vertices is connected by a unique edge. Edges = <span class="formula">n(n-1)/2</span>.</p>
                 </div>
                 <div>
-                    <h3>Bipartite Graphs</h3>
-                    <p>A graph whose vertex set can be partitioned into two disjoint sets <span class="formula">V1</span> and <span class="formula">V2</span> such that every edge connects a vertex in <span class="formula">V1</span> to one in <span class="formula">V2</span>. (No edges within the same set).</p>
+                    <h3>Cycles (<span class="formula">C<sub>n</sub></span>)</h3>
+                    <p>A path starting and ending at the same vertex. Edges = <span class="formula">n</span>.</p>
+                </div>
+                <div>
+                    <h3>Wheels (<span class="formula">W<sub>n</sub></span>)</h3>
+                    <p>Formed by connecting a single central vertex to all vertices of a cycle. Edges = <span class="formula">2n</span>.</p>
+                </div>
+                <div>
+                    <h3>n-Cubes (<span class="formula">Q<sub>n</sub></span>)</h3>
+                    <p>Vertices represent <span class="formula">2<sup>n</sup></span> bit strings of length <span class="formula">n</span>. Adjacent if strings differ by exactly 1 bit.</p>
                 </div>
             </div>
 
             <div class="warning">
-                <strong>Graph Isomorphism:</strong><br>
-                Two graphs <span class="formula">G1</span> and <span class="formula">G2</span> are isomorphic if there is a one-to-one and onto function from the vertices of <span class="formula">G1</span> to the vertices of <span class="formula">G2</span> that preserves adjacency. (They have the same structure but different labels).
+                <strong>Bipartite Graphs:</strong><br>
+                A simple graph is bipartite if its vertex set can be partitioned into two disjoint sets <span class="formula">V1</span> and <span class="formula">V2</span> such that every edge connects a vertex in <span class="formula">V1</span> to one in <span class="formula">V2</span>. No edges exist within the same group. Complete Bipartite is <span class="formula">K<sub>m,n</sub></span>.
             </div>
         </div>
 
-        <!-- Section 3: Paths and Connectivity -->
+        <!-- Section 3: Graph Isomorphism -->
         <div class="section-card">
-            <h2>3. Paths and Connectivity</h2>
-            <p>A <strong>path</strong> is a sequence of edges that begins at a vertex and travels from vertex to vertex along edges. A path is a <strong>circuit</strong> (or cycle) if it begins and ends at the same vertex.</p>
-            
+            <h2>3. Graph Isomorphism</h2>
+            <p>We can draw the same graph differently. If two graphs are actually two different representations of the same graph, they are <strong>isomorphic</strong>.</p>
+            <p>Determining isomorphism is hard (<span class="formula">n!</span> possibilities). It is often easier to prove they are <strong>NOT</strong> isomorphic by checking invariants:</p>
             <ul>
-                <li><strong>Connected Graph:</strong> There is a path between every pair of distinct vertices.</li>
-                <li><strong>Strongly Connected (Directed):</strong> There is a path from <span class="formula">a</span> to <span class="formula">b</span> and from <span class="formula">b</span> to <span class="formula">a</span> for all <span class="formula">a,b</span>.</li>
+                <li>Number of vertices must match.</li>
+                <li>Number of edges must match.</li>
+                <li><strong>Degree Sequence:</strong> The sorted list of vertex degrees must be identical.</li>
             </ul>
         </div>
 
-        <!-- Section 4: Eulerian and Hamiltonian Paths -->
+        <!-- Section 4: Graph Representations -->
         <div class="section-card">
-            <h2>4. Eulerian and Hamiltonian Paths</h2>
+            <h2>4. Graph Representations</h2>
             
-            <h3>Euler Paths & Circuits (Edge Focus)</h3>
-            <p>An <strong>Euler circuit</strong> in a graph <span class="formula">G</span> is a simple circuit containing <strong>every edge</strong> of <span class="formula">G</span> exactly once.</p>
-            <ul>
-                <li><em>Theorem:</em> A connected multigraph has an Euler circuit if and only if every vertex has an <strong>even degree</strong>.</li>
-            </ul>
-            <p>An <strong>Euler path</strong> in a graph <span class="formula">G</span> is a simple path containing every edge exactly once.</p>
-            <ul>
-                <li><em>Theorem:</em> A connected multigraph has an Euler path but not an Euler circuit if and only if it has <strong>exactly two vertices of odd degree</strong>.</li>
-            </ul>
+            <h3>1. Adjacency List</h3>
+            <p>A table mapping each vertex to its adjacent vertices (or terminal vertices for directed graphs).</p>
 
-            <h3>Hamilton Paths & Circuits (Vertex Focus)</h3>
-            <p>A <strong>Hamilton circuit</strong> is a circuit that passes through <strong>every vertex</strong> exactly once (except for the start/end vertex).</p>
-            <p>A <strong>Hamilton path</strong> is a path that passes through every vertex exactly once.</p>
-            <p><em>(Unlike Euler circuits, there are no simple necessary and sufficient criteria to determine if Hamilton circuits exist).</em></p>
+            <h3>2. Adjacency Matrix</h3>
+            <p>A square matrix <span class="formula">A</span> where <span class="formula">A<sub>ij</sub> = 1</span> if there is an edge from <span class="formula">v<sub>i</sub></span> to <span class="formula">v<sub>j</sub></span>, and 0 otherwise.</p>
+
+            <h3>3. Incidence Matrix</h3>
+            <p>A matrix where rows represent <strong>vertices</strong> and columns represent <strong>edges</strong>. <br>
+            <span class="formula">M<sub>ij</sub> = 1</span> if edge <span class="formula">e<sub>j</sub></span> is incident with vertex <span class="formula">v<sub>i</sub></span>, and 0 otherwise.</p>
+        </div>
+
+        <!-- Section 5: Paths and Connectivity -->
+        <div class="section-card">
+            <h2>5. Paths and Connectivity</h2>
+            <p>A <strong>path</strong> is a sequence of edges. A <strong>simple path</strong> does not repeat any edges. A <strong>circuit</strong> begins and ends at the same vertex.</p>
+            
+            <ul>
+                <li><strong>Connected (Undirected):</strong> There is a path between every pair of vertices.</li>
+                <li><strong>Strongly Connected (Directed):</strong> There is a directed path from <span class="formula">a</span> to <span class="formula">b</span> and from <span class="formula">b</span> to <span class="formula">a</span> for every pair of vertices.</li>
+                <li><strong>Weakly Connected (Directed):</strong> The underlying undirected graph is connected.</li>
+                <li><strong>Strongly Connected Components:</strong> Maximal subgraphs that are strongly connected.</li>
+            </ul>
         </div>
 
     </div>
