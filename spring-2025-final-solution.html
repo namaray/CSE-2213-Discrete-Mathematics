@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring 2025 Final Exam Solutions | CSE-2213 Study Guide</title>
+    <style>
+        /* CSS Styling - Consistent with Index */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e67e22;
+            --background-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --table-border: #e0e0e0;
+            --final-color: #8e44ad;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #ecf0f1;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid #ecf0f1;
+            padding: 5px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #ecf0f1;
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--final-color);
+        }
+
+        h2 {
+            color: var(--final-color);
+            border-bottom: 2px solid var(--background-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin-top: 25px;
+        }
+
+        .callout {
+            background-color: #fdf6e3;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .formula {
+            font-family: 'Courier New', Courier, monospace;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #d35400;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .math-block {
+            background: #fafafa;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Spring 2025 (251) Final Exam Solutions</h1>
+        <p>CSE-2213: Discrete Mathematics</p>
+        <a href="index.html" class="back-link">← Back to Syllabus</a>
+    </header>
+
+    <div class="container">
+
+        <!-- Question 1 -->
+        <div class="section-card">
+            <h2>Question 1: Mathematical Induction [3]</h2>
+            <p><strong>Prove:</strong> 1<sup>2</sup> + 3<sup>2</sup> + 5<sup>2</sup> + ... + (2n - 1)<sup>2</sup> = n(2n - 1)(2n + 1) / 3</p>
+            
+            <div class="math-block">
+                <strong>Basis Step:</strong> Let n = 1.<br>
+                LHS: (2(1) - 1)<sup>2</sup> = 1<sup>2</sup> = 1.<br>
+                RHS: 1(2(1) - 1)(2(1) + 1) / 3 = 1(1)(3) / 3 = 1.<br>
+                Since LHS = RHS, the basis step holds true.
+            </div>
+            
+            <div class="math-block">
+                <strong>Inductive Hypothesis:</strong> Assume the statement is true for n = k, where k &ge; 1.<br>
+                1<sup>2</sup> + 3<sup>2</sup> + ... + (2k - 1)<sup>2</sup> = k(2k - 1)(2k + 1) / 3
+            </div>
+            
+            <div class="math-block">
+                <strong>Inductive Step:</strong> Show it is true for n = k + 1.<br>
+                LHS for n = k+1: [1<sup>2</sup> + 3<sup>2</sup> + ... + (2k - 1)<sup>2</sup>] + (2(k + 1) - 1)<sup>2</sup><br>
+                Substitute the inductive hypothesis:<br>
+                = [k(2k - 1)(2k + 1) / 3] + (2k + 1)<sup>2</sup><br>
+                = (2k + 1) [ k(2k - 1)/3 + (2k + 1) ]<br>
+                = (2k + 1) [ (2k<sup>2</sup> - k + 6k + 3) / 3 ]<br>
+                = (2k + 1) (2k<sup>2</sup> + 5k + 3) / 3<br>
+                = (2k + 1) (2k + 3) (k + 1) / 3<br>
+                = (k + 1) (2(k+1) - 1) (2(k+1) + 1) / 3 = RHS for n = k+1.<br><br>
+                By the principle of mathematical induction, the statement is true for all positive integers n.
+            </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="section-card">
+            <h2>Question 2: Counting & Pigeonhole Principle [5]</h2>
+            
+            <h3>a) Password Combinations [2]</h3>
+            <p><strong>Problem:</strong> Sequence of four lowercase English letters followed by two special characters (chosen from {!, @, #, $, %, &, *}).</p>
+            <p><strong>Solution:</strong><br>
+            Number of lowercase letters = 26.<br>
+            Number of special characters in set = 7.<br>
+            Total Passwords = 26 &times; 26 &times; 26 &times; 26 &times; 7 &times; 7 = 26<sup>4</sup> &times; 7<sup>2</sup> = 456,976 &times; 49 = <strong>22,391,824</strong>.</p>
+
+            <h3>b) Bit Strings of length 8 [3]</h3>
+            <p><strong>i. At most four 0's:</strong><br>
+            This means the number of 0's can be 0, 1, 2, 3, or 4. We calculate the combinations C(8, r) for each:<br>
+            C(8, 0) + C(8, 1) + C(8, 2) + C(8, 3) + C(8, 4) = 1 + 8 + 28 + 56 + 70 = <strong>163</strong> bit strings.</p>
+            
+            <p><strong>ii. More 0's than 1's:</strong><br>
+            In an 8-bit string, this requires 5, 6, 7, or 8 zeros.<br>
+            C(8, 5) + C(8, 6) + C(8, 7) + C(8, 8) = 56 + 28 + 8 + 1 = <strong>93</strong> bit strings.</p>
+
+            <h3>c) Pigeonhole Principle [2]</h3>
+            <p><strong>Problem:</strong> How many people must be in a room to guarantee at least three share the same first letter of their last name (A-Z)?</p>
+            <p><strong>Solution:</strong> There are k = 26 "boxes" (letters). We want at least 3 people in one box. <br>
+            By the generalized pigeonhole principle, to guarantee &lceil;N/26&rceil; = 3, the worst-case scenario is having exactly 2 people for every letter (2 &times; 26 = 52). The very next person (the 53rd) must share a letter with two others.<br>
+            Therefore, <strong>53</strong> people are required.</p>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="section-card">
+            <h2>Question 3: Graph Theory Basics & Bipartite Graphs [10]</h2>
+            
+            <h3>a) Graph Analysis [6]</h3>
+            <p><strong>i. Directed Multigraph True/False:</strong> [1]<br>
+            <strong>False.</strong> A directed multigraph requires multiple edges between the same two nodes pointing in the <em>same</em> direction. This graph has edges like (1,2) and (2,1), but no two edges are identical in direction. It is a simple directed graph (with a loop).</p>
+            
+            <p><strong>ii. Handshaking Theorem (Directed Graph):</strong> [3]<br>
+            The directed handshaking theorem states: &sum; deg<sup>-</sup>(v) = &sum; deg<sup>+</sup>(v) = |E|.<br>
+            In-degrees: deg<sup>-</sup>(1)=0, deg<sup>-</sup>(2)=4 (from 1,4,5,loop), deg<sup>-</sup>(3)=2, deg<sup>-</sup>(4)=1, deg<sup>-</sup>(5)=1. Sum = 8.<br>
+            Out-degrees: deg<sup>+</sup>(1)=2, deg<sup>+</sup>(2)=1 (loop), deg<sup>+</sup>(3)=1, deg<sup>+</sup>(4)=3, deg<sup>+</sup>(5)=1. Sum = 8.<br>
+            Total edges |E| = 8. Since 8 = 8 = 8, <strong>yes</strong>, it mathematically follows the Handshaking Theorem.</p>
+            
+            <p><strong>iii. Adjacency Matrix:</strong> [2]<br>
+            Using the order (1, 2, 3, 4, 5):<br>
+            <span class="formula">
+            0 1 1 0 0<br>
+            0 1 0 0 0<br>
+            0 0 0 1 0<br>
+            0 1 1 0 1<br>
+            0 1 0 0 0
+            </span></p>
+
+            <h3>b) Bipartite Graph Detection [4]</h3>
+            <p><strong>Problem:</strong> Determine if the graph is bipartite using two-coloring algorithm.</p>
+            <p><strong>Solution:</strong> Let's color the graph using Red (R) and Blue (B):<br>
+            Start with <strong>a</strong> = R. Its neighbors <strong>b, i</strong> = B.<br>
+            Neighbors of <strong>b</strong>: <strong>d, h</strong> = R.<br>
+            Neighbors of <strong>i</strong>: <strong>c, e</strong> = R.<br>
+            Neighbors of <strong>d</strong>: <strong>f</strong> = B. (Also neighbors <strong>b, c</strong> which are B).<br>
+            Neighbors of <strong>e</strong>: <strong>g</strong> = B. (Also neighbors <strong>h, i</strong> which are B).<br>
+            Checking remaining edges: <strong>f</strong>(B) connects to <strong>g</strong>(R). Wait, tracing carefully gives us sets: <br>
+            Set 1 (Red): {a, d, h, i, g} <br>
+            Set 2 (Blue): {b, c, f, e} <br>
+            Since no two vertices of the same color are adjacent, <strong>Yes, the graph is bipartite.</strong></p>
+
+            <h3>c) Drone Network Representation [2]</h3>
+            <p><strong>Type:</strong> Directed Multigraph with Loops.<br>
+            <strong>Justification:</strong> Drones travel from one station to another (requires <em>directed edges</em>). A drone can drop off items at the same station it started (requires <em>loops</em>). Multiple drones can run the exact same route between two stations simultaneously (requires <em>multiple edges</em>).</p>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="section-card">
+            <h2>Question 4: Connectivity and Paths [6]</h2>
+            
+            <h3>a) Strongly Connected Graph [4]</h3>
+            <p><strong>Problem:</strong> Is the graph strongly connected?</p>
+            <p><strong>Solution:</strong> <strong>Yes</strong>, the graph is strongly connected. A directed graph is strongly connected if there is a directed path from every vertex to every other vertex. <br>
+            In this graph, node A can reach all other nodes (e.g., A&rarr;B&rarr;F&rarr;H, etc.), and every other node can navigate back to A through the cycle (C&rarr;E&rarr;G&rarr;F&rarr;H&rarr;B&rarr;D&rarr;A). Because the entire graph forms one massive interconnected component where returning to the start is always possible, the whole graph is a single strongly connected component.</p>
+
+            <h3>b) Trolley Routing [2]</h3>
+            <p><strong>i. Weakly Connected:</strong> [1]<br>
+            <strong>Yes.</strong> A directed graph is weakly connected if replacing all directed edges with undirected edges produces a connected graph. Ignoring edge direction, all 4 sections (R, S, H, K) form a single connected piece.<br>
+            <strong>ii. Path from H to S:</strong> [1]<br>
+            <strong>Yes.</strong> A book can be sent from History to Science using the path: H &rarr; K &rarr; R &rarr; S.</p>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="section-card">
+            <h2>Question 5: Trees [8]</h2>
+            
+            <h3>a) Full 3-ary Tree properties [2]</h3>
+            <p>Total vertices (n) = 100. For a full m-ary tree, n = mi + 1. <br>
+            100 = 3i + 1 &rArr; 3i = 99 &rArr; i = 33 internal vertices.</p>
+            <p><strong>i. Number of leaves:</strong> L = n - i = 100 - 33 = <strong>67 leaves</strong>.<br>
+            <strong>ii. Minimum possible height:</strong> L &le; m<sup>h</sup> &rArr; 67 &le; 3<sup>h</sup>. Since 3<sup>3</sup>=27 and 3<sup>4</sup>=81, the minimum possible height is <strong>h = 4</strong>.</p>
+
+            <h3>b) Tree Attributes [2]</h3>
+            <p><strong>i. Depth of the tree:</strong> The longest path from the root (A) is A&rarr;B&rarr;D&rarr;G&rarr;I (or H). The depth/height is <strong>4</strong>.<br>
+            <strong>ii. Ancestor of G:</strong> Nodes on the path from root to G: <strong>A, B, D</strong>.<br>
+            <strong>Descendants of B:</strong> All nodes below B: <strong>D, E, F, G, I, H</strong>.</p>
+
+            <h3>c) Binary Search Tree Construction [3]</h3>
+            <p>Inserting words in order: <em>Battle, Apple, Carry, Caught, Care, Ant, Apsara, Done</em></p>
+            <div class="math-block">
+                <strong>Structure:</strong><br>
+                - <strong>Battle</strong> (Root)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;- Left Child: <strong>Apple</strong><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Left Child: <strong>Ant</strong><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Right Child: <strong>Apsara</strong><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;- Right Child: <strong>Carry</strong><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Left Child: <strong>Caught</strong><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Left Child: <strong>Care</strong><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Right Child: <strong>Done</strong>
+            </div>
+
+            <h3>d) In-order Traversal [3]</h3>
+            <p><strong>Problem:</strong> Apply in-order traversal (Left, Root, Right) to the given binary tree. Is it sorted?</p>
+            <p><strong>Traversal Sequence:</strong> <strong>50, 100, 57, 57, 21, 200, 300</strong>.<br>
+            <strong>Is it sorted?</strong> <strong>No.</strong> It is not sorted because the given tree is an arbitrary binary tree, not a valid Binary Search Tree (BST). For example, 21 is the right child of 100 (but 21 &lt; 100), meaning an in-order traversal will inherently output numbers out of numerical sequence.</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 CSE-2213 Study Guide | Built for GitHub Pages</p>
+    </footer>
+
+</body>
+</html>
